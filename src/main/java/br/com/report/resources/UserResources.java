@@ -1,7 +1,7 @@
 package br.com.report.resources;
 
 import br.com.report.models.User;
-import br.com.report.repository.ErrorCenterRepository;
+import br.com.report.repository.UserRepository;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,35 +14,35 @@ import java.util.List;
 public class UserResources {
 
     @Autowired
-    private ErrorCenterRepository errorCenterRepository;
+    private UserRepository userRepository;
 
     @ApiOperation(value = "Return list os users")
     @GetMapping("/users")
     public List<User> userList(){
-        return errorCenterRepository.findAll();
+        return userRepository.findAll();
     }
 
     @ApiOperation(value = "Return one user")
     @GetMapping("/user/id")
     public User user(@PathVariable(value = "id") long id){
-        return errorCenterRepository.findById(id);
+        return userRepository.findById(id);
     }
 
     @PostMapping("/user")
     public User addUser(@RequestBody User user){
 
-        return errorCenterRepository.save(user);
+        return userRepository.save(user);
     }
 
     @DeleteMapping("/user")
     public User delUser(@RequestBody User user){
-        errorCenterRepository.delete(user);
+        userRepository.delete(user);
         return user;
     }
 
     @PutMapping("/user")
     public User updateUser(@RequestBody User user){
-        return errorCenterRepository.save(user);
+        return userRepository.save(user);
     }
 
 }
