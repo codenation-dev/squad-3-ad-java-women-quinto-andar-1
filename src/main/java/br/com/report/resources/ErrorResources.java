@@ -1,9 +1,28 @@
 package br.com.report.resources;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.report.models.Error;
+import br.com.report.repository.ErrorRepository;
+import br.com.report.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class ErrorResources {
+
+    @Autowired
+    private ErrorRepository errorRepository;
+
+    @PostMapping("/error")
+    public Error error(@RequestBody Error error){
+        return errorRepository.save(error);
+    }
+
+    @GetMapping("/errors")
+    public List<Error> errorList(){
+        return errorRepository.findAll();
+    }
+
 }
