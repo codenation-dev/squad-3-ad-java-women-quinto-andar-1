@@ -25,4 +25,12 @@ public class ErrorResources {
         return errorRepository.findAll();
     }
 
+    @DeleteMapping("/error/{id}")
+    public String delError(@PathVariable(value = "id") long id, @RequestBody String token){
+        //if token is valido
+        errorRepository.deleteById(id);
+        return "Erro deletado com sucesso!";
+    }
+
+
 }
