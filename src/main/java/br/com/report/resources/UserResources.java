@@ -23,7 +23,7 @@ public class UserResources {
     }
 
     @ApiOperation(value = "Return one user")
-    @GetMapping("/user/id")
+    @GetMapping("/user/{id}")
     public User user(@PathVariable(value = "id") long id){
         return userRepository.findById(id);
     }
