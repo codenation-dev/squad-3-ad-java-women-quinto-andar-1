@@ -1,9 +1,15 @@
 package br.com.report.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class UserService {
+import br.com.report.model.User;
 
+public interface UserService {
+
+    User toSave(User user);
+
+    User findById(Long id);
+
+    List<User> findAll();
 
 }

@@ -1,6 +1,6 @@
 package br.com.report.resources;
 
-import br.com.report.models.User;
+import br.com.report.model.User;
 import br.com.report.repository.UserRepository;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
