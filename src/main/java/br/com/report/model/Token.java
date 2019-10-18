@@ -1,4 +1,4 @@
-package br.com.report.models;
+package br.com.report.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -6,29 +6,29 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "TB_Token")
+@Table(name = "token")
 public class Token implements Serializable {
 
     private static final long serialVersionId = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TokenId")
+    @Column(name = "token_id")
     private Long id;
 
-    @Column(name = "UseriId", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "Token", nullable = false)
+    @Column(name = "token", nullable = false)
     private String token;
 
-    @Column(name = "Status", nullable = false)
+    @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "ModificationDate", nullable = false)
+    @Column(name = "modification_date", nullable = false)
     private LocalDate modificationDate;
 
-    @Column(name = "CreationDate", nullable = false)
+    @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
 
     public Long getId() {

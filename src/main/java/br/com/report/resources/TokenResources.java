@@ -1,6 +1,6 @@
 package br.com.report.resources;
 
-import br.com.report.models.Token;
+import br.com.report.model.Token;
 import br.com.report.repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
