@@ -1,4 +1,4 @@
-package br.com.report.resources;
+package br.com.report.controller;
 
 import br.com.report.model.Token;
 import br.com.report.repository.TokenRepository;

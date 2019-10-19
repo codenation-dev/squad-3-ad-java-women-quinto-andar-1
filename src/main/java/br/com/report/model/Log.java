@@ -1,9 +1,11 @@
 package br.com.report.model;
 
+import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 
 @Entity
 @Table(name = "logs")

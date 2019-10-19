@@ -1,27 +1,27 @@
-package br.com.report.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+package br.com.report.service.interfaces;
 
 import br.com.report.model.Log;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public interface LogRepository extends JpaRepository<Log, Long> {
+public interface LogServiceInterface {
 
-    @Query
+    Log toSave(Log log);
+
+    Optional<Log> findById(Long id);
+
+
+    void changeStatus(Log log);
+
+    List<Log> findAll();
+
     List<Log> findLogByEnvironment(String environment);
 
-    @Query
     List<Log> findLogByEnvironmentAndOrderBy(String environment, String orderBy);
 
-    @Query
     List<Log> findLogByEnvironmentAndSearchBy(String environment, String searchBy);
 
-    @Query
     List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy);
-
 
 }

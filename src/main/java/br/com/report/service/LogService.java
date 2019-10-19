@@ -1,28 +1,65 @@
 package br.com.report.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import br.com.report.model.Log;
+import br.com.report.repository.LogRepository;
+import br.com.report.service.interfaces.LogServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface LogService {
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
-    Log toSave(Log log);
+@Service
+public class LogService implements LogServiceInterface {
 
-    Log findById(Long id);
+    @Autowired
+	private LogRepository logRepository;
 
-    void toRemove(Long id);
+	@Override
+	public Log toSave(Log log) {
+		return logRepository.save(log);
+	}
 
-    Log changeStatus(Long id, String status);
+	@Override
+	public Optional<Log> findById(Long id) {
+		return logRepository.findById(id);
+	}
 
-    Page<Log> findAll(Pageable pageable);
+	@Override
+	public void changeStatus(Log log) {
+		logRepository.save(log);
+	}
 
-    Page<Log> findLogByEnvironment(String environment, Pageable pageable);
+	@Override
+	public List<Log> findAll() {
+		return logRepository.findAll();
+	}
 
-    Page<Log> findLogByEnvironmentAndSourceContaining(String environment, String source, Pageable pageable);
+	@Override
+	public List<Log> findLogByEnvironment(String environment) {
+		return logRepository.findLogByEnvironment(environment);
+	}
 
-    Page<Log> findLogByEnvironmentAndLevelContaining(String environment, String level, Pageable pageable);
+	@Override
+	public List<Log> findLogByEnvironmentAndOrderBy(String environment, String orderBy) {
+		
+		return logRepository.findLogByEnvironmentAndOrderBy(environment,orderBy);
+	}
 
-    Page<Log> findLogByEnvironmentAndTitleContaining(String environment, String title, Pageable paginacao);
+	@Override
+	public List<Log> findLogByEnvironmentAndSearchBy(String environment, String searchBy) {
+		
+		return logRepository.findLogByEnvironmentAndSearchBy(environment, searchBy);
+	}
+
+	@Override
+	public List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy){
+
+		
+		return logRepository.findLogByEnvironmentAndOrderByAndSearchBy(environment, orderBy, searchBy);
+	}
+
+	
 
 }
