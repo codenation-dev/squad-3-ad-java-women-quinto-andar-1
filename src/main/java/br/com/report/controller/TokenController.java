@@ -1,4 +1,4 @@
-package br.com.report.resources;
+package br.com.report.controller;
 
 import br.com.report.model.Token;
 import br.com.report.repository.TokenRepository;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class TokenResources {
+public class TokenController {
 
     @Autowired
     private TokenRepository tokenRepository;

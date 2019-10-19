@@ -1,4 +1,4 @@
-package br.com.report.service;
+package br.com.report.service.interfaces;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

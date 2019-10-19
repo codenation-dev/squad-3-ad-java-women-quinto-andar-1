@@ -3,6 +3,7 @@ package br.com.report.service;
 import br.com.report.model.Log;
 import br.com.report.repository.LogRepository;
 import br.com.report.service.exception.LogNotFoundException;
+import br.com.report.service.interfaces.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-public class LogServiceImpl implements br.com.report.service.LogService {
+public class LogServiceImpl implements LogService {
 
 	private LogRepository logRepository;
 	

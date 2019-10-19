@@ -38,7 +38,7 @@ public class User implements Serializable {
     @NotBlank
     @Column(name="active", nullable = false)
     @Size(min = 1, max = 100)
-    private String active;
+    private Boolean active = true;
 
     @NotBlank
     @Column(name="last_activity", nullable = false)
@@ -85,11 +85,11 @@ public class User implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public String getActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 

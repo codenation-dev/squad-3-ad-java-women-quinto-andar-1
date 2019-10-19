@@ -1,4 +1,4 @@
-package br.com.report.resources;
+package br.com.report.controller;
 
 import br.com.report.model.Log;
 import br.com.report.repository.LogRepository;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/log")
-public class LogResources {
+public class LogController {
 
     @Autowired
     private LogRepository logRepository;
