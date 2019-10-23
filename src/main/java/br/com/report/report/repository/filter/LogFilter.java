@@ -1,4 +1,4 @@
-package br.com.report.repository.filter;
+/*package br.com.report.repository.filter;
 
 public class LogFilter {
 
@@ -48,4 +48,4 @@ public class LogFilter {
 		this.orderBy = orderBy;
 	}
 
-}
+}*/
