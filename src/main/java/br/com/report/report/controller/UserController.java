@@ -1,7 +1,7 @@
-package br.com.report.controller;
+package br.com.report.report.controller;
 
-import br.com.report.model.User;
-import br.com.report.service.UserService;
+import br.com.report.report.model.User;
+import br.com.report.report.service.UserServiceImp;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,23 +15,23 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImp userServiceImp;
 
     @ApiOperation(value = "Return list os users")
     @GetMapping("/users")
     public List<User> userList(){
-        return userService.findAll();
+        return userServiceImp.findAll();
     }
 
     @ApiOperation(value = "Return one user")
     @GetMapping("/user/{id}")
     public Optional<User> user(@PathVariable(value = "id") long id){
-        return userService.findById(id);
+        return userServiceImp.findById(id);
     }
 
     @PostMapping("/user")
     public User addUser(@RequestBody User user){
-        return userService.toSave(user);
+        return userServiceImp.toSave(user);
     }
 
     @PutMapping("/user/{id}")
@@ -43,7 +43,7 @@ public class UserController {
 
     @PutMapping("/user")
     public User updateUser(@RequestBody User user){
-        return userService.toSave(user);
+        return userServiceImp.toSave(user);
     }
 
 }
