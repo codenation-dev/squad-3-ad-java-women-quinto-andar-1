@@ -1,10 +1,9 @@
-package br.com.report.repository;
+package br.com.report.report.repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.report.model.Log;
+import br.com.report.report.model.Log;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
