@@ -5,15 +5,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.report.model.Log;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface LogRepository extends JpaRepository<Log, Long> {
 
-    Page<Log> findLogByEnvironmentAndLevelContaining(String environment, String level, Pageable pageable);
+    @Query
+    List<Log> findLogByEnvironment(String environment);
 
-    Page<Log> findLogByEnvironmentAndTitleContaining(String environment, String Title, Pageable pageable);
+    @Query
+    List<Log> findLogByEnvironmentAndOrderBy(String environment, String orderBy);
 
-    Page<Log> findLogByEnvironmentAndSourceContaining(String environment, String source, Pageable pageable);
+    @Query
+    List<Log> findLogByEnvironmentAndSearchBy(String environment, String searchBy);
 
-    Page<Log> findLogByEnvironment(String environment, Pageable pageable);
-
+    @Query
+    List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy);
 }
