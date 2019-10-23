@@ -1,4 +1,4 @@
-package br.com.report.service.exception;
+/*package br.com.report.service.exception;
 
 public class DuplicateEmailException extends RuntimeException {
 
@@ -9,3 +9,4 @@ public class DuplicateEmailException extends RuntimeException {
 	}
 
 }
+*/
