@@ -52,4 +52,12 @@ public class User implements Serializable {
 
     @OneToOne(mappedBy = "user")
     private Token token;
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
