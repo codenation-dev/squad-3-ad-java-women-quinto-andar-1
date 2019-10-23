@@ -1,7 +1,7 @@
-package br.com.report.controller;
+package br.com.report.report.controller;
 
-import br.com.report.model.Token;
-import br.com.report.repository.TokenRepository;
+import br.com.report.report.model.Token;
+import br.com.report.report.repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
