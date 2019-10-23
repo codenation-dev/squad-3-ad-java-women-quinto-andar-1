@@ -1,6 +1,6 @@
-package br.com.report.repository;
+package br.com.report.report.repository;
 
-import br.com.report.model.Token;
+import br.com.report.report.model.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TokenRepository extends JpaRepository<Token, Long> {
