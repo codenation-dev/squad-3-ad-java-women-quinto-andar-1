@@ -1,19 +1,15 @@
-package br.com.report.service.interfaces;
+package br.com.report.report.service.interfaces;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-import br.com.report.model.Log;
+import br.com.report.report.model.Log;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface LogServiceInterface {
+public interface LogService {
 
     Log toSave(Log log);
 
     Optional<Log> findById(Long id);
-
 
     void changeStatus(Log log);
 
@@ -26,5 +22,4 @@ public interface LogServiceInterface {
     List<Log> findLogByEnvironmentAndSearchBy(String environment, String searchBy);
 
     List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy);
-
 }
