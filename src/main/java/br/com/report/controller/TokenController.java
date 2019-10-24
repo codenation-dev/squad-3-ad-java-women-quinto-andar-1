@@ -1,7 +1,7 @@
 package br.com.report.controller;
 
 import br.com.report.entity.Token;
-import br.com.report.service.TokenServiceImpl;
+import br.com.report.service.impl.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class TokenController {
 
     @Autowired
-    private TokenServiceImpl tokenServiceImpl;
+    private TokenService tokenServiceImpl;
 
     @PostMapping("/token")
     public Token addToken(@RequestBody Token token){

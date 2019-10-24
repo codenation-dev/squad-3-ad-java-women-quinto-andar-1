@@ -1,14 +1,14 @@
-package br.com.report.service;
+package br.com.report.service.impl;
 
 import br.com.report.entity.Token;
 import br.com.report.repository.TokenRepository;
-import br.com.report.service.interfaces.TokenService;
+import br.com.report.service.interfaces.TokenServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class TokenServiceImpl implements TokenService {
+public class TokenService implements TokenServiceInterface {
 
     @Autowired
     private TokenRepository tokenRepository;

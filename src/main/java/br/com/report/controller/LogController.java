@@ -2,7 +2,7 @@ package br.com.report.controller;
 
 import br.com.report.entity.Log;
 
-import br.com.report.service.LogServiceImpl;
+import br.com.report.service.impl.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class LogController {
 
     @Autowired
-    private LogServiceImpl logServiceImpl;
+    private LogService logServiceImpl;
 
 
     @PostMapping("/log")

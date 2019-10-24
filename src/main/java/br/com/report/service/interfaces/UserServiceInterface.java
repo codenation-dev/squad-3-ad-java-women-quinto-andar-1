@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import br.com.report.entity.User;
 
-public interface UserService {
+public interface UserServiceInterface {
 
     User toSave(User user);
 

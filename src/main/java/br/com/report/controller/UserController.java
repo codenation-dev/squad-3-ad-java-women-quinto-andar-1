@@ -1,7 +1,7 @@
 package br.com.report.controller;
 
 import br.com.report.entity.User;
-import br.com.report.service.UserServiceServiceImpl;
+import br.com.report.service.impl.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserServiceServiceImpl userServiceImplImp;
+    private UserService userServiceImplImp;
 
     @ApiOperation(value = "Return list os users")
     @GetMapping("/users")

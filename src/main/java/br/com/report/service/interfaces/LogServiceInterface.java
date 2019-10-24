@@ -5,7 +5,7 @@ import br.com.report.entity.Log;
 import java.util.List;
 import java.util.Optional;
 
-public interface LogService {
+public interface LogServiceInterface {
 
     Log toSave(Log log);
 

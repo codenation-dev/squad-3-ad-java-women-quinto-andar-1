@@ -1,4 +1,4 @@
-package br.com.report.service;
+package br.com.report.service.impl;
 
 import br.com.report.entity.Log;
 import br.com.report.repository.*;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LogServiceImpl implements LogService {
+public class LogService implements LogServiceInterface {
 
     @Autowired
     private LogRepository logRepository;
