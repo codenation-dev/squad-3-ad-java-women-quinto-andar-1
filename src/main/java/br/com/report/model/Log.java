@@ -1,4 +1,4 @@
-package br.com.report.report.model;
+package br.com.report.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,14 +11,14 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
-@Table(name = "log")
+@Table(name = "tb_log")
 public class Log implements Serializable {
 
     private static final long serialVersionId = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "collected_by")
     private int collectedBy;
@@ -52,8 +52,10 @@ public class Log implements Serializable {
     @Size(min = 1, max = 50)
     private String environment;
 
-    @OneToOne(mappedBy = "log")
+    @OneToOne
     private Token token;
+
+
 
 
 }

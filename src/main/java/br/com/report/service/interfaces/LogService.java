@@ -1,6 +1,6 @@
-package br.com.report.report.service.interfaces;
+package br.com.report.service.interfaces;
 
-import br.com.report.report.model.Log;
+import br.com.report.model.Log;
 
 import java.util.List;
 import java.util.Optional;

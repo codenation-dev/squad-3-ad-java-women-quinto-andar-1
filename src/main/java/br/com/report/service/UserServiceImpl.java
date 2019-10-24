@@ -1,8 +1,8 @@
-package br.com.report.report.service;
+package br.com.report.service;
 
-import br.com.report.report.model.User;
-import br.com.report.report.service.interfaces.UserService;
-import br.com.report.report.repository.UserRepository;
+import br.com.report.model.User;
+import br.com.report.repository.UserRepository;
+import br.com.report.service.interfaces.LogUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImpl implements LogUser {
 
 	@Autowired
 	private UserRepository userRepository;
