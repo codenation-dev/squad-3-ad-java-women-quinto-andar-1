@@ -18,8 +18,8 @@ public class LogController {
 
 
     @PostMapping("/log")
-    public Log toSave(@RequestBody Log log){
-        return logServiceImpl.toSave(log);
+    public Log addLog(@RequestBody Log log){
+        return logServiceImpl.addLog(log);
     }
 
     @GetMapping("/log/{id}")

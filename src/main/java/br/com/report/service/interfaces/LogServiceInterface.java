@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface LogServiceInterface {
 
-    Log toSave(Log log);
+    Log addLog(Log log);
 
     Optional<Log> findById(Long id);
 
