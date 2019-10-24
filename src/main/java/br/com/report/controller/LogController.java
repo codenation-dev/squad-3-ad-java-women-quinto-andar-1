@@ -4,6 +4,8 @@ import br.com.report.model.Log;
 
 import br.com.report.service.LogServiceImpl;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,10 @@ public class LogController {
     private LogServiceImpl logServiceImpl;
 
 
+    @ApiOperation(value = "Add a new log")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad Request")
+    })
     @PostMapping("/log")
     public Log toSave(@RequestBody Log log){
         return logServiceImpl.toSave(log);
