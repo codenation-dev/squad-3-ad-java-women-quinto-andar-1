@@ -3,9 +3,9 @@ package br.com.report.service.interfaces;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.report.model.User;
+import br.com.report.entity.User;
 
-public interface LogUser {
+public interface UserService {
 
     User toSave(User user);
 

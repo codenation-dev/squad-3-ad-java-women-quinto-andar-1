@@ -1,6 +1,6 @@
 package br.com.report.service;
 
-import br.com.report.model.Log;
+import br.com.report.entity.Log;
 import br.com.report.repository.*;
 import br.com.report.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;

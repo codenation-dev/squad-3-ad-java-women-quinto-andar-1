@@ -1,4 +1,4 @@
-package br.com.report.model;
+package br.com.report.entity;
 
 import lombok.Getter;
 import lombok.Setter;

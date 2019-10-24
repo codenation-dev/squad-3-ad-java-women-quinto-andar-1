@@ -3,11 +3,8 @@ package br.com.report.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.report.model.Log;
-import org.springframework.data.jpa.repository.Query;
+import br.com.report.entity.Log;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface LogRepository extends JpaRepository<Log, Long> {

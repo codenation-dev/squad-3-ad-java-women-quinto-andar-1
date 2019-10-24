@@ -1,6 +1,6 @@
 package br.com.report.controller;
 
-import br.com.report.model.Log;
+import br.com.report.entity.Log;
 
 import br.com.report.service.LogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

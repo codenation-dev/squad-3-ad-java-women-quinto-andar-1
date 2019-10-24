@@ -1,7 +1,7 @@
 package br.com.report.controller;
 
-import br.com.report.model.User;
-import br.com.report.service.UserServiceImpl;
+import br.com.report.entity.User;
+import br.com.report.service.UserServiceServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userServiceImplImp;
+    private UserServiceServiceImpl userServiceImplImp;
 
     @ApiOperation(value = "Return list os users")
     @GetMapping("/users")
@@ -36,7 +36,7 @@ public class UserController {
 
     @PutMapping("/user/{id}")
     public User changeStatus(@PathVariable(value = "id") Long id, @RequestBody User user){
-        //user.setActive(!user.getActive());
+        user.setActive(!user.getActive());
         //userService.changeStatus(id);
         return user;
     }

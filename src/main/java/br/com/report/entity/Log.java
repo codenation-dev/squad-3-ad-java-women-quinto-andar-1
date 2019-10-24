@@ -1,4 +1,4 @@
-package br.com.report.model;
+package br.com.report.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,42 +20,33 @@ public class Log implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "collected_by")
-    private int collectedBy;
-
-    @Column(name="level", nullable = false)
-    @Size(min = 1, max = 20)
+    @Column(nullable = false)
+    @Size(max = 20)
     private String level;
 
-    @Column(name="origin", nullable = false)
-    @Size(min = 1, max = 50)
+    @Column(nullable = false)
+    @Size(max = 50)
     private String origin;
 
-    @Column(name="description", nullable = false)
-    @Size(min = 1, max = 128)
+    @Column(nullable = false)
+    @Size(max = 128)
     private String description;
 
-    @Column(name="details", nullable = false)
-    @Size(min = 1, max = 300)
+    @Column(nullable = false)
+    @Size(max = 300)
     private String details;
 
     private Timestamp dataLogged;
 
     @Column(name="status", nullable = false)
-    @Size(min = 1, max = 10)
+    @Size(max = 10)
     private String status;
 
-    @Column(name = "last_modified_by")
-    private int lastModifiedBy;
-
-    @Column(name="environment", nullable = false)
-    @Size(min = 1, max = 50)
+    @Column(nullable = false)
+    @Size(max = 50)
     private String environment;
 
     @OneToOne
-    private Token token;
-
-
-
+    private Token tokenCollected;
 
 }
