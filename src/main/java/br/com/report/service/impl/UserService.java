@@ -30,8 +30,8 @@ public class UserService implements UserServiceInterface {
 		return this.userRepository.findAll();
 	}
 
-	public User updateUser(User user){
-		return userRepository.save(user);
+	public void changeStatus(User user){
+		 userRepository.save(user);
 	}
 
 }
