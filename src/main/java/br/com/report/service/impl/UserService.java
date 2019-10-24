@@ -27,13 +27,11 @@ public class UserService implements UserServiceInterface {
 
 	@Override
 	public List<User> findAll() {
-
 		return this.userRepository.findAll();
 	}
 
-
-	/*public void changeStatus(Long id){
-		userRepository.changeStatus(id);
-	}*/
+	public User updateUser(User user){
+		return userRepository.save(user);
+	}
 
 }

@@ -32,26 +32,9 @@ public class UserController {
         return userService.findAll();
     }
 
-
-
-
-
-
-
-
-
-
-
-    @PutMapping("/user/{id}")
-    public User changeStatus(@PathVariable(value = "id") Long id, @RequestBody User user){
-        user.setActive(!user.getActive());
-        //userService.changeStatus(id);
-        return user;
-    }
-
     @PutMapping("/user")
     public User updateUser(@RequestBody User user){
-        return userService.addUser(user);
+        return userService.updateUser(user);
     }
 
 }
