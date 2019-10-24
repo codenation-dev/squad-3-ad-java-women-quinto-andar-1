@@ -27,17 +27,16 @@ public class UserController {
         return userService.findById(id);
     }
 
-
-
-
-
-
-
-    @ApiOperation(value = "Return list os users")
     @GetMapping("/users")
-    public List<User> userList(){
+    public List<User> findAll(){
         return userService.findAll();
     }
+
+
+
+
+
+
 
 
 

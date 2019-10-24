@@ -9,7 +9,6 @@ public interface UserServiceInterface {
 
     User addUser(User user);
     Optional<User> findById(Long id);
-
     List<User> findAll();
 
 }
