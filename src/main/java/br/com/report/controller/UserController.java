@@ -17,11 +17,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @PostMapping("/user")
     public User addUser(@RequestBody User user){
         return userService.addUser(user);
     }
+
+    @GetMapping("/user/{id}")
+    public Optional<User> findById(@PathVariable(value = "id") long id){
+        return userService.findById(id);
+    }
+
+
+
 
 
 
@@ -32,11 +39,7 @@ public class UserController {
         return userService.findAll();
     }
 
-    @ApiOperation(value = "Return one user")
-    @GetMapping("/user/{id}")
-    public Optional<User> user(@PathVariable(value = "id") long id){
-        return userService.findById(id);
-    }
+
 
 
 
