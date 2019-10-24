@@ -15,12 +15,9 @@ public class UserService implements UserServiceInterface {
 	@Autowired
 	private UserRepository userRepository;
 
-
 	@Override
-	public User toSave(User user) {
-
+	public User addUser(User user) {
 		return userRepository.save(user);
-
 	}
 
 	@Override

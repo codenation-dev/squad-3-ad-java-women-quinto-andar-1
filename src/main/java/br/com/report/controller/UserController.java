@@ -15,24 +15,30 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserService userServiceImplImp;
+    private UserService userService;
+
+
+    @PostMapping("/user")
+    public User addUser(@RequestBody User user){
+        return userService.addUser(user);
+    }
+
+
+
 
     @ApiOperation(value = "Return list os users")
     @GetMapping("/users")
     public List<User> userList(){
-        return userServiceImplImp.findAll();
+        return userService.findAll();
     }
 
     @ApiOperation(value = "Return one user")
     @GetMapping("/user/{id}")
     public Optional<User> user(@PathVariable(value = "id") long id){
-        return userServiceImplImp.findById(id);
+        return userService.findById(id);
     }
 
-    @PostMapping("/user")
-    public User addUser(@RequestBody User user){
-        return userServiceImplImp.toSave(user);
-    }
+
 
     @PutMapping("/user/{id}")
     public User changeStatus(@PathVariable(value = "id") Long id, @RequestBody User user){
@@ -43,7 +49,7 @@ public class UserController {
 
     @PutMapping("/user")
     public User updateUser(@RequestBody User user){
-        return userServiceImplImp.toSave(user);
+        return userService.addUser(user);
     }
 
 }

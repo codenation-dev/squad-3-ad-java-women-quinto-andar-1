@@ -7,7 +7,7 @@ import br.com.report.entity.User;
 
 public interface UserServiceInterface {
 
-    User toSave(User user);
+    User addUser(User user);
 
     Optional<User> findById(Long id);
 
