@@ -136,10 +136,10 @@ buildNumber.properties
 ### Angular ###
 ## Angular ##
 # compiled output
-ErrorCenter/dist/
-ErrorCenter/tmp/
-ErrorCenter/app/**/*.js
-ErrorCenter/app/**/*.js.map
+dist/
+tmp/
+app/**/*.js
+app/**/*.js.map
 
 # dependencies
 node_modules/
@@ -158,8 +158,8 @@ testem.log
 typings/
 
 # e2e
-ErrorCenter/e2e/*.js
-ErrorCenter/e2e/*.map
+e2e/*.js
+e2e/*.map
 
 #System Files
 .DS_Store/
