@@ -131,3 +131,48 @@ buildNumber.properties
 .flattened-pom.xml
 
 # End of https://www.gitignore.io/api/java,maven,intellij
+
+
+### Angular ###
+## Angular ##
+# compiled output
+ErrorCenter/dist/
+ErrorCenter/tmp/
+ErrorCenter/app/**/*.js
+ErrorCenter/app/**/*.js.map
+
+# dependencies
+node_modules/
+bower_components/
+
+# IDEs and editors
+.idea/
+
+# misc
+.sass-cache/
+connect.lock/
+coverage/
+libpeerconnection.log/
+npm-debug.log
+testem.log
+typings/
+
+# e2e
+ErrorCenter/e2e/*.js
+ErrorCenter/e2e/*.map
+
+#System Files
+.DS_Store/
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/angular,visualstudiocode
