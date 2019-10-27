@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row box-cadastro">
+    <div class="col-12">
+      <h3 class="text-center">Cadastro</h3>
+      <form class="mt-5" (ngSubmit)="cadastro()" [formGroup]="formCadastro">
+        <!--<div class="form-group">
+          <input type="text" class="form-control cadastro" placeholder="Nome" formControlName="nome">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control cadastro" placeholder="CPF" formControlName="cpf">
+        </div>-->
+        <div class="form-group">
+          <input type="email" class="form-control cadastro" placeholder="E-mail" formControlName="login">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control cadastro" placeholder="Password" formControlName="password">
+        </div>
+        <!--<div class="form-group">
+          <input type="text" class="form-control cadastro" placeholder="Endereço" formControlName="endereco">
+        </div>-->
+        <button type="submit" class="btn btn-cadastro" style="float: right;" >Cadastrar</button>
+      </form>
+    </div>
+  </div>
+</div>

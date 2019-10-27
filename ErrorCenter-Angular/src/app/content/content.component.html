@@ -1,0 +1,111 @@
+<app-header></app-header>
+
+<div class="container wrapper-content">
+  <!--<button class="btn btn-home-cadastro-clientes" (click)="gotoCadastroClientes()">Crie sua conta</button>-->
+
+  <!-- <div class="box-tile">
+    <h1><b class="tag">#</b>Traning banking juros amigo</h1>
+    <button class="btn btn-home-cadastro-clientes" (click)="gotoCadastroClientes()">Crie sua conta</button>
+  </div>
+  <div class="bg_img"></div>
+  -->
+
+  <!-- Dropdowns de select-->
+  <div class="row">
+    <div class="col-sm-12 col-md-3">
+      <mat-form-field>
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="selectedAmb">
+          <mat-option value="producao">Produção</mat-option>
+          <mat-option value="homologacao">Homologação</mat-option>
+          <mat-option value="dev">Dev</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-sm-12 col-md-3">
+      <mat-form-field>
+        <mat-label>Ordenar por</mat-label>
+        <mat-select [(value)]="selectedOrdem">
+          <mat-option>None</mat-option>
+          <mat-option value="level">Level</mat-option>
+          <mat-option value="frequencia">Frequência</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-sm-12 col-md-3">
+      <mat-form-field>
+        <mat-label>Buscar por</mat-label>
+        <mat-select [(value)]="selectedBusca">
+          <mat-option>None</mat-option>
+          <mat-option value="level">Level</mat-option>
+          <mat-option value="descricao">Descrição</mat-option>
+          <mat-option value="origem">Origem</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-sm-12 col-md-3">
+      <!-- Filter -->
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+    </div>
+  </div>
+
+    <button mat-stroked-button color="primary">Arquivar</button>
+    <button mat-stroked-button color="accent">Apagar</button>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="log">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Log </th>
+        <td mat-cell *matCellDef="let row"> {{row.log}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="level">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Level </th>
+        <td mat-cell *matCellDef="let row"> {{row.level}} </td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="evento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Evento </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.evento"> {{row.evento}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+
+</div>
