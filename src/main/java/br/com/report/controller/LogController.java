@@ -2,7 +2,6 @@ package br.com.report.controller;
 
 import br.com.report.entity.Log;
 
-import br.com.report.service.LogServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
