@@ -1,12 +1,9 @@
-package br.com.report.model;
+package br.com.report.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -47,5 +44,11 @@ public class User implements Serializable {
             fetch = FetchType.LAZY, optional = false)
     private Token token;
 
+    public Boolean getActive() {
+        return active;
+    }
 
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }

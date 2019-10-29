@@ -1,6 +1,6 @@
-package br.com.report.service;
+package br.com.report.service.impl;
 
-import br.com.report.model.Log;
+import br.com.report.entity.Log;
 import br.com.report.repository.*;
 import br.com.report.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LogServiceImpl implements LogService {
+public class LogService implements LogServiceInterface {
 
     @Autowired
     private LogRepository logRepository;
 
     @Override
-    public Log toSave(Log log) {
+    public Log addLog(Log log) {
         return logRepository.save(log);
     }
 
@@ -37,25 +37,25 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public List<Log> findLogByEnvironment(String environment) {
-        return null;//logRepository.findLogByEnvironment(environment);
+        return logRepository.findLogByEnvironment(environment);
     }
 
     @Override
     public List<Log> findLogByEnvironmentAndOrderBy(String environment, String orderBy) {
 
-        return null;//logRepository.findLogByEnvironmentAndOrderBy(environment,orderBy);
+        return logRepository.findLogByEnvironmentAndOrderBy(environment,orderBy);
     }
 
     @Override
     public List<Log> findLogByEnvironmentAndSearchBy(String environment, String searchBy) {
 
-        return null;//logRepository.findLogByEnvironmentAndSearchBy(environment, searchBy);
+        return logRepository.findLogByEnvironmentAndSearchBy(environment, searchBy);
     }
 
     @Override
     public List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy){
 
 
-        return null; //logRepository.findLogByEnvironmentAndOrderByAndSearchBy(environment, orderBy, searchBy);
+        return logRepository.findLogByEnvironmentAndOrderByAndSearchBy(environment, orderBy, searchBy);
     }
 }

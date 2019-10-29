@@ -1,7 +1,7 @@
 package br.com.report.controller;
 
-import br.com.report.model.User;
-import br.com.report.service.UserServiceImpl;
+import br.com.report.entity.User;
+import br.com.report.service.impl.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,35 +15,26 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userServiceImplImp;
-
-    @ApiOperation(value = "Return list os users")
-    @GetMapping("/users")
-    public List<User> userList(){
-        return userServiceImplImp.findAll();
-    }
-
-    @ApiOperation(value = "Return one user")
-    @GetMapping("/user/{id}")
-    public Optional<User> user(@PathVariable(value = "id") long id){
-        return userServiceImplImp.findById(id);
-    }
+    private UserService userService;
 
     @PostMapping("/user")
     public User addUser(@RequestBody User user){
-        return userServiceImplImp.toSave(user);
+        return userService.addUser(user);
     }
 
-    @PutMapping("/user/{id}")
-    public User changeStatus(@PathVariable(value = "id") Long id, @RequestBody User user){
-        //user.setActive(!user.getActive());
-        //userService.changeStatus(id);
-        return user;
+    @GetMapping("/user/{id}")
+    public Optional<User> findById(@PathVariable(value = "id") long id){
+        return userService.findById(id);
+    }
+
+    @GetMapping("/users")
+    public List<User> findAll(){
+        return userService.findAll();
     }
 
     @PutMapping("/user")
-    public User updateUser(@RequestBody User user){
-        return userServiceImplImp.toSave(user);
+    public void changeStatus(@RequestBody User user){
+         userService.changeStatus(user);
     }
 
 }

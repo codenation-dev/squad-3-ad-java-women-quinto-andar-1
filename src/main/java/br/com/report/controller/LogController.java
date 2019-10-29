@@ -1,11 +1,12 @@
 package br.com.report.controller;
 
-import br.com.report.model.Log;
+import br.com.report.entity.Log;
 
 import br.com.report.service.LogServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import br.com.report.service.impl.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class LogController {
 
     @Autowired
-    private LogServiceImpl logServiceImpl;
+    private LogService logServiceImpl;
 
 
     @ApiOperation(value = "Add a new log")
@@ -25,8 +26,8 @@ public class LogController {
             @ApiResponse(code = 400, message = "Bad Request")
     })
     @PostMapping("/log")
-    public Log toSave(@RequestBody Log log){
-        return logServiceImpl.toSave(log);
+    public Log addLog(@RequestBody Log log){
+        return logServiceImpl.addLog(log);
     }
 
     @GetMapping("/log/{id}")

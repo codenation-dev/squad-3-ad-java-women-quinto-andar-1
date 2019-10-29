@@ -1,13 +1,13 @@
 package br.com.report.service.interfaces;
 
-import br.com.report.model.Log;
+import br.com.report.entity.Log;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface LogService {
+public interface LogServiceInterface {
 
-    Log toSave(Log log);
+    Log addLog(Log log);
 
     Optional<Log> findById(Long id);
 
