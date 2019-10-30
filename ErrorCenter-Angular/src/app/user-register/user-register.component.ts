@@ -5,6 +5,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../User';
 
 @Component({
   selector: 'app-user-register',
@@ -22,7 +23,7 @@ export class UserRegisterComponent implements OnInit {
   ngOnInit() {
     //localStorage.clear();
     this.formCadastro = this.fb.group({
-      //nome: [''],
+      email: [],
       login: [],
       password: []
     });
@@ -47,8 +48,27 @@ export class UserRegisterComponent implements OnInit {
     console.log(this.conversao);
     //localStorage.setItem('cadastro', this.conversao);
 
+    let userInfo = {
+      email: this.formCadastro.value.email,
+      login: this.formCadastro.value.login,
+      password: this.formCadastro.value.password,
+      creationDate: "2019-12-10", 
+      lastActivity: "2019-12-10"
+    }
+    console.log(userInfo);
 
-    this.userService.postUsers(this.formCadastro.value).subscribe(users => console.log(users));
+    let user = new User();
+    user.email = this.formCadastro.value.email;
+    user.login = this.formCadastro.value.login;
+    user.password= this.formCadastro.value.password;
+    user.creationDate= "2019-12-10";
+    user.lastActivity= "2019-12-10";
+
+    console.log("user");
+    console.log(user);
+    console.log(JSON.stringify(user));
+
+    this.userService.postUsers(user).subscribe(users => console.log(users));
     
     this.verificaCadastro();
   }

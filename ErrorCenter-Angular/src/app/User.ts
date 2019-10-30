@@ -1,4 +1,7 @@
 export class User {
-  email: string;
-  password: string;
+  public email: string;
+  public login: string;
+  public password: string;
+  public creationDate: string;
+  public lastActivity: string;
 }
