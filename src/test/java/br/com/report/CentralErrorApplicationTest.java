@@ -34,7 +34,6 @@ public class CentralErrorApplicationTest {
         user.setLogin("tainamedeiros");
         user.setPassword("123456");
         user.setEmail("tainajmedeiros@gmail.com");
-        user.setLastActivity("10/10/10");
 
         ResponseEntity<User> postResponse = restTemplate.postForEntity(getRootUrl() +
                 "/api/user", user, User.class);
