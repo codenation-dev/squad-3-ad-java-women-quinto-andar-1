@@ -5,7 +5,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../User';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-user-register',

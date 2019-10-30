@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formLogin = this.fb.group({
-      email: [''],
+      login: [],
       senha: []
     });
   }
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     const emailPersistido = this.getCadastro['email'];
     console.log("emailPersistido");
     console.log(typeof(emailPersistido));
-    const emailDigitado = this.formLogin.get('email').value;
+    const emailDigitado = this.formLogin.get('login').value;
     console.log("emailDigitado");
     console.log(typeof(emailDigitado));
     if (emailPersistido == emailDigitado) {
