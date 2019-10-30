@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
-import { User } from '../User';
 import { log } from 'util';
 
 @Injectable({
@@ -22,6 +21,9 @@ export class UserService {
     return this.http.get(this.userUrl + "/api/users");
   }
   /**Get user by Id */
+  getUserById(id){
+    return this.http.get(this.userUrl + "/api/user/" + id);
+  }
 
   /**Post user */
   postUsers(body){

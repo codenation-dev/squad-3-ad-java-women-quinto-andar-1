@@ -48,6 +48,7 @@ public class User extends DateAudit implements Serializable {
 
     }
 
+<<<<<<< HEAD
     public User(String login, String email, String password) {
         this.password = password;
         this.email = email;
@@ -60,6 +61,12 @@ public class User extends DateAudit implements Serializable {
     private Token token;
 */
 >>>>>>> fix: changes in user register
+=======
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+    private Token token;
+
+>>>>>>> fix: login
     public Boolean getActive() {
         return active;
     }
