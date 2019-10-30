@@ -40,10 +40,10 @@ public class User implements Serializable {
     @Size(max = 100)
     private String lastActivity;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
+    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private Token token;
-
+*/
     public Boolean getActive() {
         return active;
     }
