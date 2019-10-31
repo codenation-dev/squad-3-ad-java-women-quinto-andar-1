@@ -14,8 +14,8 @@ export class UserHomeComponent implements OnInit {
   ngOnInit() {
     console.log(this.el.nativeElement);
 
-    this.getCadastro = JSON.parse(localStorage.getItem('cadastro'));
-    this.nameCliente = this.getCadastro['nome'];
+    this.getCadastro = JSON.parse(sessionStorage.getItem('username'));
+    this.nameCliente = this.getCadastro['username'];
     console.log(this.nameCliente);
   }
 

@@ -1,5 +1,10 @@
-<div class="wrapper-content">
-  <h1>Você não tem acesso a essa página, favor tente realizar seu cadastro</h1>
-
-  <button (click)='navegarParaCadastro()'>Realizar cadastro</button>
+<div class="content">
+  <div class="box-access-denied">
+      <h3>Acesso Negado!</h3>
+      <p>
+          Você não tem acesso a essa página, favor tente <a routerLink='/user-register'>realizar seu cadastro</a> 
+          ou <a routerLink='/login'>entrar com sua conta</a>.
+      </p>
+      
+  </div>
 </div>

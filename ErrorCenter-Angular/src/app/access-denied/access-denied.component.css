@@ -4,3 +4,8 @@
     z-index: -9999;
     top: -60px;
 } 
+
+.box-access-denied {
+    margin: 30px;
+    padding: 30px;
+    }
