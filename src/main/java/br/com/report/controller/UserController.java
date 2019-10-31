@@ -17,16 +17,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @ApiOperation(value = "Add a new user in database")
     @PostMapping("/user")
     public User addUser(@RequestBody User user){
         return userService.addUser(user);
     }
 
+    @ApiOperation(value = "Finds a user by its id")
     @GetMapping("/user/{id}")
     public Optional<User> findById(@PathVariable(value = "id") long id){
         return userService.findById(id);
     }
 
+    @ApiOperation(value = "Return a list with all the users")
     @GetMapping("/users")
     public List<User> findAll(){
         return userService.findAll();
