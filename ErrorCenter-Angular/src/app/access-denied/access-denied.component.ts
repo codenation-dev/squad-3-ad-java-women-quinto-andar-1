@@ -13,7 +13,13 @@ export class AccessDeniedComponent implements OnInit {
   ngOnInit() {
   }
   
+  /*
   navegarParaCadastro() {
     this.router.navigate(['/user-register']);
   }
+
+  navegarParaLogin() {
+    this.router.navigate(['/login']);
+  }
+  */
 }
