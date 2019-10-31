@@ -27,6 +27,6 @@ export class UserService {
 
   /**Post user */
   postUsers(body){
-    return this.http.post(this.userUrl + "/api/user", body);
+    return this.http.post(this.userUrl + "/api/auth/cad", body);
   }
 }

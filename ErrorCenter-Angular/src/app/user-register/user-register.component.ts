@@ -48,29 +48,37 @@ export class UserRegisterComponent implements OnInit {
     console.log(this.conversao);
     //localStorage.setItem('cadastro', this.conversao);
 
-    let userInfo = {
-      email: this.formCadastro.value.email,
-      login: this.formCadastro.value.login,
-      password: this.formCadastro.value.password,
-      creationDate: "2019-12-10", 
-      lastActivity: "2019-12-10"
-    }
-    console.log(userInfo);
+   // let userInfo = {
+   //   email: this.formCadastro.value.email,
+   //   login: this.formCadastro.value.login,
+   //   password: this.formCadastro.value.password,
+      //creationDate: "2019-12-10", 
+      //lastActivity: "2019-12-10"
+   // }
+   // console.log(userInfo);
 
     let user = new User();
     user.email = this.formCadastro.value.email;
     user.login = this.formCadastro.value.login;
     user.password= this.formCadastro.value.password;
-    user.creationDate= "2019-12-10";
-    user.lastActivity= "2019-12-10";
+    //user.creationDate= "2019-12-10";
+    //user.lastActivity= "2019-12-10";
 
     console.log("user");
     console.log(user);
-    console.log(JSON.stringify(user));
+    //console.log(JSON.stringify(user));
 
-    this.userService.postUsers(user).subscribe(users => console.log(users));
+    this.userService.postUsers(user).subscribe(users => {
+      console.log(users);
+      //this.verificaCadastro();
+      this.router.navigate(['/succesful-register']);
+    },
+    Error => {
+      console.log(Error);
+    }
+    );
     
-    this.verificaCadastro();
+    
   }
 
   verificaCadastro() {
