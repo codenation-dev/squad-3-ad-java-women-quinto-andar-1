@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
     isAuthenticated() {
         // pega o token cadastro
-        const token = localStorage.getItem('cadastro');
+        const token = sessionStorage.getItem('token');
         // checa se existe token
         if (token) {
             return true;
