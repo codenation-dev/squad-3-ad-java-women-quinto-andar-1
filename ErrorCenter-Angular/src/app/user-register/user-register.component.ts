@@ -1,4 +1,4 @@
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
+import { SuccessfulRegisterComponent } from '../successful-register/successful-register.component';
 
 @Component({
   selector: 'app-user-register',
@@ -17,8 +18,13 @@ export class UserRegisterComponent implements OnInit {
   formCadastro;
   valoresForm: Object;
   conversao;
+  durationInSeconds = 5;
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog, private router: Router, private userService: UserService) { }
+  constructor(private fb: FormBuilder, 
+              public dialog: MatDialog, 
+              private router: Router, 
+              private userService: UserService,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     //localStorage.clear();
@@ -71,14 +77,20 @@ export class UserRegisterComponent implements OnInit {
     this.userService.postUsers(user).subscribe(users => {
       console.log(users);
       //this.verificaCadastro();
-      this.router.navigate(['/succesful-register']);
+      //this.router.navigate(['/succesful-register']);
+      this.router.navigate(['/login']);
+      this.openSnackBar();
     },
     Error => {
       console.log(Error);
     }
     );
-    
-    
+  }
+
+  openSnackBar() {
+    this._snackBar.openFromComponent(SuccessfulRegisterComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
   }
 
   verificaCadastro() {

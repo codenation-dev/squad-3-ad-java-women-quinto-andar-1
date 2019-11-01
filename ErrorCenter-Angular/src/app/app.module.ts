@@ -14,6 +14,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 
 
 import { AppComponent } from './app.component';
@@ -60,6 +61,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatSelectModule,
     HttpClientModule,
+    MatSnackBarModule
     
   ],
   providers: [AuthGuard, AuthService],
