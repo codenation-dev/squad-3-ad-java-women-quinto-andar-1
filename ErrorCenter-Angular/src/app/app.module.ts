@@ -22,7 +22,6 @@ import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
-import { UserHomeComponent } from './user-home/user-home.component';
 import { LoginComponent } from './login/login.component';
 import { SuccessfulRegisterComponent } from './successful-register/successful-register.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
@@ -38,7 +37,6 @@ import { HttpClientModule } from '@angular/common/http';
     ContentComponent,
     FooterComponent,
     UserRegisterComponent,
-    UserHomeComponent,
     LoginComponent,
     SuccessfulRegisterComponent,
     AccessDeniedComponent,
