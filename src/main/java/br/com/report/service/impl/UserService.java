@@ -30,6 +30,7 @@ public class UserService implements UserServiceInterface {
 		return this.userRepository.findAll();
 	}
 
+	@Override
 	public void changeStatus(User user){
 		 userRepository.save(user);
 	}
