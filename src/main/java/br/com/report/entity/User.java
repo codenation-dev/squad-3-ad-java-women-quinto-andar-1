@@ -1,17 +1,19 @@
 package br.com.report.entity;
 
+import br.com.report.entity.audit.DateAudit;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "tb_user")
-public class User implements Serializable {
+public class User extends DateAudit implements Serializable {
+
     private static final long serialVersionId = 1L;
 
     @Id
@@ -30,19 +32,21 @@ public class User implements Serializable {
     @Size(max = 100)
     private String email;
 
-    @Column(name="creation_date", nullable = false)
-    @Size(max = 100)
-    private String creationDate;
-
     private Boolean active = true;
-
-    @Column(name="last_activity", nullable = false)
-    @Size(max = 100)
-    private String lastActivity;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private Token token;
+
+    public User(){
+
+    }
+
+    public User(String login, String email, String password) {
+        this.password = password;
+        this.email = email;
+        this.login = login;
+    }
 
     public Boolean getActive() {
         return active;
@@ -84,21 +88,6 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public String getLastActivity() {
-        return lastActivity;
-    }
-
-    public void setLastActivity(String lastActivity) {
-        this.lastActivity = lastActivity;
-    }
 
     public Token getToken() {
         return token;
@@ -107,4 +96,10 @@ public class User implements Serializable {
     public void setToken(Token token) {
         this.token = token;
     }
+/*
+    private String dateNow(){
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(new Date());
+    }*/
 }

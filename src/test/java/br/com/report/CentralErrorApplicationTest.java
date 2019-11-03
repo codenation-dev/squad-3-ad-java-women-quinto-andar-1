@@ -22,12 +22,11 @@ public class CentralErrorApplicationTest {
     private TestRestTemplate restTemplate;
 
     @LocalServerPort
-    private int port;
+    private int port = 8080;
 
     private String getRootUrl(){
         return "http://localhost:" + port;
     }
-
 
     @Test
     public void testCreateUser(){
@@ -35,7 +34,6 @@ public class CentralErrorApplicationTest {
         user.setLogin("tainamedeiros");
         user.setPassword("123456");
         user.setEmail("tainajmedeiros@gmail.com");
-        user.setLastActivity("10/10/10");
 
         ResponseEntity<User> postResponse = restTemplate.postForEntity(getRootUrl() +
                 "/api/user", user, User.class);
@@ -57,6 +55,11 @@ public class CentralErrorApplicationTest {
         User user = restTemplate.getForObject(getRootUrl() + "/api/user/1", User.class);
         System.out.println(user.getLogin());
         Assert.assertNotNull(user);
+    }
+
+    @Test
+    public void testUpdatePost(){
+
     }
 
 }
