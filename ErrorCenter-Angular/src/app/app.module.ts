@@ -26,7 +26,8 @@ import { LoginComponent } from './login/login.component';
 import { SuccessfulRegisterComponent } from './successful-register/successful-register.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ModalNotRegisteredComponent } from './modal-not-registered/modal-not-registered.component';
-import { ErrorViewComponent } from './error-view/error-view.component';
+import { ErrorViewComponent } from './log-view/log-view.component';
+import { LogListingComponent } from './log-listing/log-listing.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     SuccessfulRegisterComponent,
     AccessDeniedComponent,
     ModalNotRegisteredComponent,
-    ErrorViewComponent
+    ErrorViewComponent,
+    LogListingComponent
   ],
   imports: [
     BrowserModule,

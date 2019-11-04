@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-error-view',
-  templateUrl: './error-view.component.html',
-  styleUrls: ['./error-view.component.css']
+  selector: 'app-log-view',
+  templateUrl: './log-view.component.html',
+  styleUrls: ['./log-view.component.css']
 })
 export class ErrorViewComponent implements OnInit {
 

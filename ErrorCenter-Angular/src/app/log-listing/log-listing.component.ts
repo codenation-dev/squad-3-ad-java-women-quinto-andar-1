@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-error-view',
-  templateUrl: './error-view.component.html',
-  styleUrls: ['./error-view.component.css']
+  selector: 'app-log-listing',
+  templateUrl: './log-listing.component.html',
+  styleUrls: ['./log-listing.component.css']
 })
-export class ErrorViewComponent implements OnInit {
+export class LogListingComponent implements OnInit {
 
   constructor() { }
 

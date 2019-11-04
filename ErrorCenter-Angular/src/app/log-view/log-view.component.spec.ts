@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorViewComponent } from './error-view.component';
+import { ErrorViewComponent } from './log-view.component';
 
 describe('ErrorViewComponent', () => {
   let component: ErrorViewComponent;
