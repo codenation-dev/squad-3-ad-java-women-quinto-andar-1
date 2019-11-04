@@ -47,6 +47,6 @@ public class Log implements Serializable {
     private String environment;
 
     @OneToOne
-    private Token tokenCollected;
+    private User tokenCollected;
 
 }
