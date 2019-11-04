@@ -29,16 +29,19 @@ public class LogController {
         return logServiceImpl.addLog(log);
     }
 
+    @ApiOperation(value = "Finds a log by its id")
     @GetMapping("/log/{id}")
     public Optional<Log> findById(@PathVariable(value = "id")  Long id){
         return logServiceImpl.findById(id);
     }
 
+    @ApiOperation(value = "Modify log delete / filed status")
     @PutMapping("/log")
     public void changeStatus(@RequestBody Log log){
         logServiceImpl.changeStatus(log);
     }
 
+    @ApiOperation(value = "Return a list with all the logs")
     @GetMapping("/log")
     public List<Log> findAll() {
         return logServiceImpl.findAll();
