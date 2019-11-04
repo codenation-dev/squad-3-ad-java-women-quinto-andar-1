@@ -5,12 +5,18 @@
       <li>Central de Erros</li>
     </ul>
     -->
-    <h5>Bem Vindo(a) {{userName}}. Seu token é: {{userToken}}</h5>
+    <h5 *ngIf="loginService.isLoggedIn()">Bem Vindo(a) {{userName}}. Seu token é: {{userToken}}</h5>
   </div>
 
 <div class="col-sm-12 col-md">
-  <button class="btn btn-link" style="float: right; color: #fff" (click)="logout()">
+  <button *ngIf="loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" (click)="logout()">
     Sair
+  </button>
+  <button *ngIf="!loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" routerLink="/user-register">
+      Cadastrar
+  </button>
+  <button *ngIf="!loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" routerLink="/login">
+      Login
   </button>
 </div>
   <!-- <div class="col-xs-12 col-md-2 align-left">
