@@ -7,6 +7,7 @@ import { UserService } from '../services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
 import { SuccessfulRegisterComponent } from '../successful-register/successful-register.component';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-user-register',
@@ -24,6 +25,7 @@ export class UserRegisterComponent implements OnInit {
               public dialog: MatDialog, 
               private router: Router, 
               private userService: UserService,
+              private loginService: LoginService,
               private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -41,9 +43,16 @@ export class UserRegisterComponent implements OnInit {
         this.valoresForm = res;
       });
 
+      this.isUserLoggedIn();
       //this.userService.getUsers().subscribe(users => {
       //  console.log(users);
       //});
+  }
+
+  isUserLoggedIn(){
+    if(this.loginService.isLoggedIn()){
+      this.router.navigate(['/home'])
+    }
   }
 
   cadastro() {

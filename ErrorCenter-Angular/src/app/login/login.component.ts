@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   keys;
   getCadastro;
   message;
+  isFailedLogin = false;
 
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -29,6 +30,13 @@ export class LoginComponent implements OnInit {
       login: [],
       password: []
     });
+    this.isUserLoggedIn();
+  }
+
+  isUserLoggedIn(){
+    if(this.loginService.isLoggedIn()){
+      this.router.navigate(['/home'])
+    }
   }
 
   onlynumber(evt) {
@@ -64,6 +72,11 @@ export class LoginComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.router.navigate(['/home'])
+      },
+      Error => {
+        this.isFailedLogin = true;
+        console.log("Error");
+        console.log(Error);
       });
 
     //if (emailPersistido == emailDigitado) {
