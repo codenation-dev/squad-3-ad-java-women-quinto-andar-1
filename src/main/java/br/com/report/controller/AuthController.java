@@ -7,6 +7,7 @@ import br.com.report.payload.LoginRequest;
 import br.com.report.payload.SignUpRequest;
 import br.com.report.repository.UserRepository;
 import br.com.report.security.JwtTokenProvider;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,7 @@ public class AuthController {
     @Autowired
     JwtTokenProvider tokenProvider;
 
+    @ApiOperation(value = "Authenticate user access in api")
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         System.out.println(loginRequest.getLogin() + " " + loginRequest.getPassword());
@@ -54,6 +56,7 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
+    @ApiOperation(value = "Add a new user in database")
     @PostMapping("/cad")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByLogin(signUpRequest.getLogin())) {
@@ -69,6 +72,7 @@ public class AuthController {
         // Creating user's account
         User user = new User(signUpRequest.getLogin(), signUpRequest.getEmail(), signUpRequest.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setToken();
         User result = userRepository.save(user);
 
         return ResponseEntity.ok(new ApiResponse(true, "User registered successfully"));
