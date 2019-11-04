@@ -12,7 +12,6 @@ import { ErrorViewComponent } from './error-view/error-view.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'user-register', component: UserRegisterComponent },
-  { path: 'succesful-register', component: SuccessfulRegisterComponent },
   { path: 'home', component: ContentComponent, canActivate: [AuthGuard] },
   { path: 'error-view', component: ErrorViewComponent, canActivate: [AuthGuard] },
   { path: 'access-denied', component: AccessDeniedComponent },
