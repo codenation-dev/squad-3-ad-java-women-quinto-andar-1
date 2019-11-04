@@ -34,10 +34,11 @@ public class User extends DateAudit implements Serializable {
     @Size(max = 100)
     private String email;
 
+    @Column(nullable = false)
     private Boolean active = true;
 
-    @Column(nullable = false)
-    private UUID token;
+    @Column
+    private String token;
 
     @OneToMany
     private List<Log> logs;
@@ -92,20 +93,21 @@ public class User extends DateAudit implements Serializable {
         this.email = email;
     }
 
-
-    public UUID getToken() {
-        return token;
-    }
-
-    public void setToken(UUID token) {
-        this.token = token;
-    }
-
     public List<Log> getLogs() {
         return logs;
     }
 
     public void setLogs(List<Log> logs) {
         this.logs = logs;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken() {
+        UUID uuid = UUID.randomUUID();
+        String token = uuid.toString();
+        this.token = token;
     }
 }
