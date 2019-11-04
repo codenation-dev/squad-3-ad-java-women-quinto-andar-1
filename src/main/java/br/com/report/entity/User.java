@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_user")
@@ -34,9 +36,11 @@ public class User extends DateAudit implements Serializable {
 
     private Boolean active = true;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
-    private Token token;
+    @Column(nullable = false)
+    private UUID token;
+
+    @OneToMany
+    private List<Log> logs;
 
     public User(){
 
@@ -89,17 +93,19 @@ public class User extends DateAudit implements Serializable {
     }
 
 
-    public Token getToken() {
+    public UUID getToken() {
         return token;
     }
 
-    public void setToken(Token token) {
+    public void setToken(UUID token) {
         this.token = token;
     }
-/*
-    private String dateNow(){
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        return simpleDateFormat.format(new Date());
-    }*/
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
+    }
 }
