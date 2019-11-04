@@ -10,7 +10,7 @@ import { LoginService } from '../services/login.service';
 })
 export class HeaderComponent implements OnInit {
   //Informacoes do usuario e token
-  userName = "Usuário";
+  userName;
   userToken = "jsjsjjsjsjsjsjjsjsjsjs";
 
   formLogin;
@@ -22,12 +22,15 @@ export class HeaderComponent implements OnInit {
       email: []
     });
     this.getUsername();
+    console.log("INITI");
   }
 
   getUsername(){
     console.log("Usuario logado: ");
    this.userName = sessionStorage.getItem('username')
    console.log(this.userName);
+   console.log("ROTA:");
+   console.log(this.router.url);
   }
 
   gotoCadastroClientes() {
