@@ -1,59 +1,60 @@
-<app-header></app-header>
-
-<div class="container wrapper">
-  <button mat-stroked-button color="primary">Voltar</button>
-  <div class="row wrapper">
+<div class="container">
+  <div class="row">
     <div class="col">
-        <h2>
-            Erro no 127.0.0.1 {{ip}} em 24/05/2019 10:15{{data}} {{hora}}
-            </h2>
-    </div>
-    
+      <section>
+        <header class="header">
+         <div class="row">
+          <div class="col-md-2">
+    <form name="empForm">
+  <table>
+   <tr>
+  <th colspan="2">Add Employee</th>
+  </tr>
+  <tr> 
+  <td>FirstName:</td>
+  <td><input id="firstName" name="firstName" ></td>
+  </tr>
+  <tr>
+  <td>Phone No:</td>
+  <td><input id="phoneNo" name="phoneNo"></td>
+  </tr>
+  <tr>
+  <td>Email:</td>
+  <td><input id="email" name="email"></td>
+  </tr>
+  <tr>
+  <td colspan="2"> <button type="button" (click)="createEmployee()" class="blue-button">submit</button></td>
+  </tr>
+  </table>
+  </form>
   </div>
-  <div class="row wrapper">
-    <div class="col-sm-10 col-md-8">
-      <h5>Titulo</h5>
-      acceleration.Service.AddCandidate: forbiden
-      {{titulo}}
-    </div>
-    <div class="col-sm-2 col-md-4">
-      <div class="row">
-        <div class="col">
-            error {{status}}
-            <br>
-        </div>
-        
-      </div>
-      <div class="row">
-        <div class="col wrapper">
-          <h5>Eventos</h5>
-          <p>1000</p> 
-        </div>
-      </div>
-    </div>
   </div>
-  <div class="row wrapper">
-    <div class="col-sm-10 col-md-8">
-      <h5>Detalhes</h5>
-      file...
-      <br>
-      file...
-      <br>
-      file...
-      <br>
-      file...
-      <br>
-      file...
-    </div>
-    <div class="col-sm-2 col-md-4">
-      <div class="row">
-        <div class="col">
-            <h5>Coletado por</h5>
-            
-            Token do usuario {{token}}
-        </div>
-        
-      </div>
-    </div>
+ </header>
+  </section>
+ <section class="main">
+ <table class="table">
+  <thead>
+  <tr>
+  <th>#</th>
+  <th>First Name</th>
+  <th>Phone No</th>
+  <th>Email</th>
+  <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let employee of employees">
+  <th scope="row">"1"}</th>
+  <!-- <td>{{employee.firstName}}</td>
+  <td>{{employee.phoneNo}}</td>
+  <td>{{employee.email}}</td> -->
+  <td>
+  <button type="button" class="btn btn-danger" (click)="deleteEmployee(employee)">Delete</button>
+  </td>
+  </tr>
+ </tbody>
+  </table>
+  </section>
   </div>
-</div>
+  </div>
+ </div>
