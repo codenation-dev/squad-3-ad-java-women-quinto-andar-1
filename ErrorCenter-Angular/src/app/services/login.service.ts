@@ -39,4 +39,11 @@ export class LoginService {
     sessionStorage.removeItem('token');
   }
 
+  isLoggedIn(){
+    if(sessionStorage.getItem('username')){
+      return true;
+    }
+    return false;
+  }
+
 }
