@@ -9,6 +9,11 @@ public class LoginRequest {
     @NotBlank
     private String password;
 
+    public LoginRequest(@NotBlank String login, @NotBlank String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     public String getLogin() {
         return login;
     }
