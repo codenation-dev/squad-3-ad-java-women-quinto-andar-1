@@ -16,6 +16,12 @@ public class SignUpRequest {
     @Size(min = 6, max = 20)
     private String password;
 
+    public SignUpRequest(@NotBlank @Size(min = 4, max = 40) String login, @NotBlank @Size(max = 40) @Email String email, @NotBlank @Size(min = 6, max = 20) String password) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+    }
+
     public String getLogin() {
         return login;
     }
