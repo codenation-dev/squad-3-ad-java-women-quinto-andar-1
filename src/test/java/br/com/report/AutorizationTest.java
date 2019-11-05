@@ -109,5 +109,28 @@ public class AutorizationTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized());
     }
-    
+
+    @Test
+    public void sizeLoginSignUpUserTest() throws Exception {
+        this.mvc.perform( MockMvcRequestBuilders
+                .post("/api/auth/cad")
+                .content(asJsonString(
+                        new SignUpRequest("qwertyuiolkjhgfdsazxcv", "tata@email.com", "TM@123")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void notSuccessEmailFormatSignUpUserTest() throws Exception {
+        this.mvc.perform( MockMvcRequestBuilders
+                .post("/api/auth/cad")
+                .content(asJsonString(
+                        new SignUpRequest("taina", "tataemailcom", "TM@123")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+
 }
