@@ -27,6 +27,23 @@ public class AutorizationTest {
     @Autowired
     private MockMvc mvc;
 
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void generaterUser() throws Exception {
+        this.mvc.perform( MockMvcRequestBuilders
+                .post("/api/auth/cad")
+                .content(asJsonString(
+                        new SignUpRequest("taina", "taina@email.com", "TM@123")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
+    }
+
     @Test
     public void successSignUpUserTest() throws Exception {
         this.mvc.perform( MockMvcRequestBuilders
@@ -67,24 +84,6 @@ public class AutorizationTest {
 
     }
 
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void generaterUser() throws Exception {
-        this.mvc.perform( MockMvcRequestBuilders
-                .post("/api/auth/cad")
-                .content(asJsonString(
-                        new SignUpRequest("taina", "taina@email.com", "TM@123")))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON));
-    }
-
-
     @Test
     public void successAuthenticateUserTest() throws Exception {
         generaterUser();
@@ -100,7 +99,7 @@ public class AutorizationTest {
     }
 
     @Test
-    public void notSuccessAuthenticateUserTest() throws Exception {
+    public void notSuccessUnregisteredUserAuthenticateUserTest() throws Exception {
         this.mvc.perform( MockMvcRequestBuilders
                 .post("/api/auth/login")
                 .content(asJsonString(
