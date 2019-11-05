@@ -110,6 +110,29 @@ public class AutorizationTest {
     }
 
     @Test
+    public void userCorrectPasswordWrongAuthenticateUserTest() throws Exception {
+        generaterUser();
+        this.mvc.perform( MockMvcRequestBuilders
+                .post("/api/auth/login")
+                .content(asJsonString(
+                        new LoginRequest("taina", "senhaerrada")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    public void userWrongPasswordCorrectAuthenticateUserTest() throws Exception {
+        generaterUser();
+        this.mvc.perform( MockMvcRequestBuilders
+                .post("/api/auth/login")
+                .content(asJsonString(
+                        new LoginRequest("usererrado", "TM@123")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnauthorized());
+    }
+    @Test
     public void sizeLoginSignUpUserTest() throws Exception {
         this.mvc.perform( MockMvcRequestBuilders
                 .post("/api/auth/cad")
