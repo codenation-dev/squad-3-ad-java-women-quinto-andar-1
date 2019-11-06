@@ -4,17 +4,23 @@ import javax.validation.constraints.*;
 
 public class SignUpRequest {
     @NotBlank
-    @Size(min = 4, max = 40)
+    @Size(max = 20)
     private String login;
 
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 100)
     @Email
     private String email;
 
     @NotBlank
-    @Size(min = 6, max = 20)
+    @Size(max = 100)
     private String password;
+
+    public SignUpRequest(@NotBlank @Size(max = 20) String login, @NotBlank @Size(max = 100) @Email String email, @NotBlank @Size(max = 100) String password) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getLogin() {
         return login;
