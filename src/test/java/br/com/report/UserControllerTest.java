@@ -101,7 +101,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void notSuccessFindByIdTest() throws Exception {
+    public void nonexistentIdFindByIdTest() throws Exception {
         generaterUser();
         String token = obtainAccessToken("taina","TM@123");
         ResultActions result
@@ -118,7 +118,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void notSuccessGetAllUse() throws Exception {
+    public void unauthorizedGetAllUse() throws Exception {
         this.mvc.perform( MockMvcRequestBuilders
                 .get("/api/users")
                 .contentType(MediaType.APPLICATION_JSON)
