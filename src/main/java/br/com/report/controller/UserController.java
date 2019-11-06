@@ -3,6 +3,7 @@ package br.com.report.controller;
 import br.com.report.entity.User;
 import br.com.report.service.impl.UserService;
 import io.swagger.annotations.ApiOperation;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +21,20 @@ public class UserController {
 
     @ApiOperation(value = "Finds a user by its id")
     @GetMapping("/user/{id}")
-    public Optional<User> findById(@PathVariable(value = "id") long id){
-        return userService.findById(id);
+    public Optional<User> findById(@PathVariable(value = "id") long id) throws Exception {
+        Optional<User> user = userService.findById(id);
+
+        user.orElseThrow(()-> new NotFoundException("Not found user with id: " + id));
+
+       return user;
     }
 
     @ApiOperation(value = "Return a list with all the users")
     @GetMapping("/users")
-    public List<User> findAll(){
+    public List<User> findAll() throws Exception{
+        if(findAll().isEmpty())
+            throw new NotFoundException("No users!");
+
         return userService.findAll();
     }
 
