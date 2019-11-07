@@ -9,5 +9,6 @@ export class Log{
    public status: String;
    public environment: String;
    public token: String;
+  static id: string;
 
 }

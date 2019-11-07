@@ -1,60 +1,242 @@
-<div class="container">
-  <div class="row">
+<app-header></app-header>
+
+<div class="container wrapper">
+  <button mat-stroked-button color="primary">Voltar</button>
+  <div class="row wrapper">
     <div class="col">
-      <section>
-        <header class="header">
-         <div class="row">
-          <div class="col-md-2">
-    <form name="empForm">
-  <table>
-   <tr>
-  <th colspan="2">Add Employee</th>
-  </tr>
-  <tr> 
-  <td>FirstName:</td>
-  <td><input id="firstName" name="firstName" ></td>
-  </tr>
-  <tr>
-  <td>Phone No:</td>
-  <td><input id="phoneNo" name="phoneNo"></td>
-  </tr>
-  <tr>
-  <td>Email:</td>
-  <td><input id="email" name="email"></td>
-  </tr>
-  <tr>
-  <td colspan="2"> <button type="button" (click)="createEmployee()" class="blue-button">submit</button></td>
-  </tr>
+        <h2></h2>
+    </div>
+  </div>
+
+  <div class="topnav">
+
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search environment..">
+    <input type="text" placeholder="Ordenar por">
+    <input type="text" placeholder="Buscar por">
+    <input type="text" placeholder="Buscar..">
+    <button mat-stroked-button color="primary">Ir</button>
+    <ul id="myUL">
+      <li><a href="#">Produção</a></li>
+      <li><a href="#">Dev</a></li>
+      <li><a href="#">Homologação</a></li>
+    </ul>
+
+    </div>
+    <div class="container wrapper">
+        <button mat-stroked-button color="primary">Arquivar</button>
+        <button mat-stroked-button color="primary">Apagar</button>        
+        <div class="row wrapper">
+          </div>
+        
+  <div *ngFor="let log of logs">
+      <h3>
+          {{ log.id }}
+      </h3>
+  </div>
+  <div ng-controller="myController">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Checkbox</th>
+                                          
+                        <th>
+                            Level 
+                        </th>
+                        <th >
+                            Log 
+                        </th>
+                        <th >
+                            Origem 
+                        </th>
+                        <th >
+                            Eventos 
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="employee in employees | filter:searchText" >
+                        <td> {{ level }} </td>
+                        <td> {{ date | date:"dd/MM/yyyy" }} </td>
+                        <td> {{ description-error }} </td>
+                        <td> {{ origem  }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+<!-- 
+
+    <div class="col-sm-10 col-md-8">
+      <h5>Titulo</h5>
+      acceleration.Service.AddCandidate: forbiden
+      {{titulo}}
+    </div>
+    <div class="col-sm-2 col-md-4">
+      <div class="row">
+        <div class="col">
+            error {{status}}
+            <br>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col wrapper">
+          <h5>Eventos</h5>
+          <p>1000</p> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row wrapper">
+    <div class="col-sm-10 col-md-8">
+      <h5>Detalhes</h5>
+      file...
+      <br>
+      file...
+      <br>
+      file...
+      <br>
+      file...
+      <br>
+      file...
+    </div> -->
+    <div class="col-sm-2 col-md-4">
+      <div class="row">
+        <div class="col">
+            <h5>Coletado por</h5>
+            
+            Token do usuario {{token}}
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="col-md-6">
+  <h2> User Details</h2>
+  
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+    </theadv
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td class="hidden"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><button class="btn btn-danger" (click)="changeStatus(log)"> Delete User</button></td>
+    </tr>
+    </tbody>
   </table>
-  </form>
-  </div>
-  </div>
- </header>
-  </section>
- <section class="main">
- <table class="table">
-  <thead>
-  <tr>
-  <th>#</th>
-  <th>First Name</th>
-  <th>Phone No</th>
-  <th>Email</th>
-  <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let employee of employees">
-  <th scope="row">"1"}</th>
-  <!-- <td>{{employee.firstName}}</td>
-  <td>{{employee.phoneNo}}</td>
-  <td>{{employee.email}}</td> -->
-  <td>
-  <button type="button" class="btn btn-danger" (click)="deleteEmployee(employee)">Delete</button>
-  </td>
-  </tr>
- </tbody>
-  </table>
-  </section>
-  </div>
-  </div>
- </div>
+  </div> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Central de Erros - Dashboard</title>
+  </head>
+  <body>
+    <header class="header-dashboard">
+      <section class="user-welcome"></section>
+      <section class="user-menu"></section>
+    </header>
+    <nav class="dashboard-filters">
+      <section class="filters-selection">
+        <form>
+          <select name="ambiente" id="ambiente" class="select-filters">
+            <option value="desenvolvimento">Desenvolvimento</option>
+            <option value="homologacao">Homologação</option>
+            <option value="producao">Produção</option>
+          </select>
+          <select name="ordenar" id="ordenar" class="select-filters">
+            <option value="level">Level</option>
+            <option value="frequencia">Frequência</option>
+          </select>
+          <select name="buscar" id="buscar" class="select-filters">
+            <option value="level">Level</option>
+            <option value="descricao">Descrição</option>
+            <option value="origem">Origem</option>
+          </select>
+          <input type="text" id="busca-input" class="dashboard-input" />
+          <button type="submit" class="busca-button">Buscar</button>
+        </form>
+      </section>
+      <section class="filters-buttons">
+        <button class="filter-button">Arquivar</button>
+        <button class="filter-button">Apagar</button>
+        <button class="filter-button">Atualizar</button>
+      </section>
+    </nav>
+    <main class="main-dashboard">
+      <section class="table-header">
+        <div class="table-header-item">Level</div>
+        <div class="table-header-item">Log</div>
+        <div class="table-header-item">Eventos</div>
+      </section>
+      <section class="table-body">
+        <div class="table-body-item">
+          <div class="table-item-level">
+            <div class="level-error">Error</div>
+          </div>
+          <div class="table-item-level">
+            <div class="level-warning">Warning</div>
+          </div>
+          <div class="table-item-level">
+            <div class="level-debug">Debug</div>
+          </div>
+          <div class="table-item-level">
+            <div class="level-error">Error</div>
+          </div>
+        </div>
+        <div class="table-body-item">
+          <div class="table-item-log">
+            <div class="description-error">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+              molestias nam vel atque vitae provident quasi ex repellendus.
+            </div>
+          </div>
+          <div class="table-item-log">
+            <div class="description-error">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+              molestias nam vel atque vitae provident quasi ex repellendus.
+            </div>
+          </div>
+          <div class="table-item-log">
+            <div class="description-error">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+              molestias nam vel atque vitae provident quasi ex repellendus.
+            </div>
+          </div>
+          <div class="table-item-log">
+            <div class="description-error">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+              molestias nam vel atque vitae provident quasi ex repellendus.
+            </div>
+          </div>
+        </div>
+        <div class="table-body-item">
+          <div class="table-item-eventos">
+            <div class="event-error">1000</div>
+          </div>
+          <div class="table-item-eventos">
+            <div class="event-error">300</div>
+          </div>
+          <div class="table-item-eventos">
+            <div class="event-error">100</div>
+          </div>
+          <div class="table-item-eventos">
+            <div class="event-error">11</div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>&copy; 2019 - Squad 3 Java Women</footer>
+  </body>
+</html -->

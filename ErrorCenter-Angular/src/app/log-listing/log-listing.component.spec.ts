@@ -14,7 +14,7 @@ describe('LogListingComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogListingComponent);
+    fixture = TestBed.createComponent(LogListingComponent );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
