@@ -46,8 +46,10 @@ public class LogController {
     }
 
     @ApiOperation(value = "Modify log delete / filed status")
-    @PutMapping("/log")
-    public void changeStatus(@RequestBody Log log){
+    @PutMapping("/log/id")
+    public void changeStatus(@RequestBody Log log, @PathVariable("id") Long id) throws NotFoundException {
+        Optional<Log> findLog = logService.findById(id);
+        findLog.orElseThrow(()-> new NotFoundException("Not found user with id: " + id));
         logService.changeStatus(log);
     }
 
