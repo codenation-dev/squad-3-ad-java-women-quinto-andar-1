@@ -32,10 +32,11 @@ public class UserController {
     @ApiOperation(value = "Return a list with all the users")
     @GetMapping("/users")
     public List<User> findAll() throws Exception{
-        if(findAll().isEmpty())
+        List<User> users = userService.findAll();
+        if(users.isEmpty()){
             throw new NotFoundException("No users!");
-
-        return userService.findAll();
+        }
+        return users;
     }
 
     @ApiOperation(value = "Modify user on / off status")
