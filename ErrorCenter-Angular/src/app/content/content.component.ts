@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { LogService } from '../services/log.service';
 
 export interface UserData {
   id: string;
@@ -29,14 +30,14 @@ const LEVELS: string[] = [
   'error', 'warning', 'debug', 'warning', 'error'
 ];
 
-const ELEMENT_DATA: UserData[] = [
-  {id: '1', level: 'error', log: "Descrição do log", evento: '1000'},
+//const ELEMENT_DATA: UserData[]; = [
+ /* {id: '1', level: 'error', log: "Descrição do log", evento: '1000'},
   {id: '2', level: 'warning', log: "Descrição do log", evento: '400'},
   {id: '3', level: 'debug', log: "Descrição do log", evento: '374'},
   {id: '4', level: 'debug', log: "Descrição do log", evento: '100'},
   {id: '5', level: 'error', log: "Descrição do log", evento: '22'},
   {id: '6', level: 'error', log: "Descrição do log", evento: '11'},
-];
+];*/
 
 @Component({
   selector: 'app-content',
@@ -46,7 +47,7 @@ const ELEMENT_DATA: UserData[] = [
 export class ContentComponent implements OnInit {
   // ----- Select Forms -----
   selectedAmb = 'producao';
-
+ELEMENT_DATA;
   // ----- Tabela -----
   displayedColumns: string[] = ['select', 'id', 'level', 'log', 'evento'];
   dataSource: MatTableDataSource<UserData>;
@@ -55,7 +56,7 @@ export class ContentComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private logService: LogService) {
 
     // Para mockup aqui --------------------------------------------------------------------
     // Create 100 users
@@ -63,11 +64,30 @@ export class ContentComponent implements OnInit {
 
     // Assign the data to the data source for the table to render
 
-    this.dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
+
+    logService.getLogs().subscribe(
+      response=>{
+        console.log(response);
+        let res = response;
+        console.log(res);
+        this.fillTable(res);
+        
+
+      }
+    );
     // Fim do mockup-------------------------------------------------------------------------
   }
 
   ngOnInit() {
+
+
+
+  }
+
+  fillTable(res){
+    this.ELEMENT_DATA = res;
+    this.dataSource = new MatTableDataSource<UserData>(this.ELEMENT_DATA);
+
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
