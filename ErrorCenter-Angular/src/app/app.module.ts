@@ -63,7 +63,7 @@ import { HttpClientModule } from '@angular/common/http';
     
   ],
   providers: [AuthGuard, AuthService],
-  entryComponents: [ModalNotRegisteredComponent],
+  entryComponents: [ModalNotRegisteredComponent,SuccessfulRegisterComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
