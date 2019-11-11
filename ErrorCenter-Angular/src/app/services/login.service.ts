@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -7,7 +7,12 @@ import { map } from 'rxjs/operators';
 })
 export class LoginService {
 
-  private url = 'http://localhost:8080';
+  private url = 'https://central-de-erros.herokuapp.com';
+
+  header = {
+    headers: new HttpHeaders()
+      .set('Authorization',  sessionStorage.getItem('token'))
+  }
 
   constructor(private http: HttpClient) { }
 

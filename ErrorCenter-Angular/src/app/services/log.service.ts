@@ -13,18 +13,25 @@ const httpOptions = {
 })
 export class LogService {
 
-  // private logUrl = 'http://localhost:4200/';
-	private logUrl = '/api';
+  private logUrl = 'https://central-de-erros.herokuapp.com';
+	//private logUrl = '/api';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  header = {
+    headers: new HttpHeaders()
+      .set('Authorization',  sessionStorage.getItem('token'))
+  }
+
   constructor(private http: HttpClient) { }
 
   /**GET logs */
   getLogs(){
-    return this.http.get<Log[]>(this.logUrl + "/api/log");
+    console.log("GET DOS LOGS");
+    console.log(this.header);
+    return this.http.get(this.logUrl + "/api/log", this.header);
   }
 
   addLog(Log){
@@ -55,6 +62,5 @@ export class LogService {
 
   findLogByEnvironmentAndOrderByAndSearchBy(environment: String, orderBy: String, searchBy: String){
     return this.http.get<Log[]>(this.logUrl + "/api/{environment}/{orderBy}/{searchBy}")}
-
 
 }

@@ -8,7 +8,7 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class UserService {
 
-  private userUrl = 'http://localhost:8080';
+  private userUrl = 'https://central-de-erros.herokuapp.com';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
