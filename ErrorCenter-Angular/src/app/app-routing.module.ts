@@ -9,6 +9,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { ErrorViewComponent } from './log-view/log-view.component';
 import { LogListingComponent } from './log-listing/log-listing.component';
 
+
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'user-register', component: UserRegisterComponent },
