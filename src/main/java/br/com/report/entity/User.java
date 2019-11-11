@@ -40,7 +40,6 @@ public class User extends DateAudit implements Serializable {
     @Column
     private String token;
 
-<<<<<<< HEAD
     @OneToMany
     private List<Log> logs;
 
@@ -48,25 +47,12 @@ public class User extends DateAudit implements Serializable {
 
     }
 
-<<<<<<< HEAD
     public User(String login, String email, String password) {
         this.password = password;
         this.email = email;
         this.login = login;
     }
 
-=======
-    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
-    private Token token;
-*/
->>>>>>> fix: changes in user register
-=======
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
-    private Token token;
-
->>>>>>> fix: login
     public Boolean getActive() {
         return active;
     }
