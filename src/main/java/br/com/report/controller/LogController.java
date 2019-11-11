@@ -38,7 +38,7 @@ public class LogController {
     }
 
     @ApiOperation(value = "Finds a log by its id")
-    @GetMapping("/log/{id}")
+    @GetMapping("/log/id/{id}")
     public Optional<Log> findById(@PathVariable(value = "id") long id) throws NotFoundException {
         Optional<Log> log = logService.findById(id);
         log.orElseThrow(()-> new NotFoundException("Not found log with id: " + id));
@@ -75,7 +75,7 @@ public class LogController {
     }
 
     @ApiOperation(value = "Return logs by environment and ordered by the chosen parameter")
-    @GetMapping("/log/{environment}/{orderBy}")
+    @GetMapping("/log/envOrd/{environment}/{orderBy}")
     public List<Log> findLogByEnvironmentAndOrderBy(@PathVariable(value = "environment") String environment,
                                                     @PathVariable(value = "orderBy") String orderBy)
                                                     throws NotFoundException{
