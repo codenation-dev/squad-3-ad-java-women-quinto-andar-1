@@ -26,6 +26,10 @@ export class ErrorViewComponent implements OnInit {
     console.log(data);
     //this.ip = data.ip;  // trocar depois
     //this.data = data.data;
+    //this.hora = data.hora;
+    //this.status = data.status;
+    //this.titulo = data.titulo;
+    //this.token = data.token;
     });
   }
 }
