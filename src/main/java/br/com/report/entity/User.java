@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,7 @@ public class User extends DateAudit implements Serializable {
 
     @Column(nullable = false)
     @Size(max = 100)
+    @Email
     private String email;
 
     @Column(nullable = false)
