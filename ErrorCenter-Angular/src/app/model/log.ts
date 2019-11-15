@@ -1,14 +1,10 @@
 export class Log{
-
-   public id: number;
-   public level: String;
-   public origin: String;
-   public description: String;
-   public details: String;
-   public dateLogged: Date;
-   public status: String;
-   public environment: String;
-   public token: String;
-  static id: string;
-
+  public level: string;
+  public origin: string;
+  public description: string;
+  public details: string;
+  public dataLogged: string;
+  public status: string;
+  public environment: string;
+  //public tokenCollected: User;
 }
