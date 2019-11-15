@@ -1,6 +1,4 @@
-<app-header></app-header>
-
-<div class="container wrapper">
+<!--<div class="container wrapper">
   <button mat-stroked-button color="primary">Voltar</button>
   <div class="row wrapper">
     <div class="col">
@@ -63,180 +61,114 @@
                 </tbody>
             </table>
         </div>
-<!-- 
+      -->
 
-    <div class="col-sm-10 col-md-8">
-      <h5>Titulo</h5>
-      acceleration.Service.AddCandidate: forbiden
-      {{titulo}}
+<div class="container wrapper-content">
+  <!--<button class="btn btn-home-cadastro-clientes" (click)="gotoCadastroClientes()">Crie sua conta</button>-->
+
+  <!-- <div class="box-tile">
+    <h1><b class="tag">#</b>Traning banking juros amigo</h1>
+    <button class="btn btn-home-cadastro-clientes" (click)="gotoCadastroClientes()">Crie sua conta</button>
+  </div>
+  <div class="bg_img"></div>
+  -->
+
+  <!-- Dropdowns de select-->
+  <div class="row">
+    <div class="col-sm-12 col-md-3">
+      <mat-form-field>
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="selectedAmb">
+          <mat-option value="producao">Produção</mat-option>
+          <mat-option value="homologacao">Homologação</mat-option>
+          <mat-option value="dev">Dev</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div class="col-sm-2 col-md-4">
-      <div class="row">
-        <div class="col">
-            error {{status}}
-            <br>
-        </div>
-        
-      </div>
-      <div class="row">
-        <div class="col wrapper">
-          <h5>Eventos</h5>
-          <p>1000</p> 
-        </div>
-      </div>
+
+    <div class="col-sm-12 col-md-3">
+      <mat-form-field>
+        <mat-label>Ordenar por</mat-label>
+        <mat-select [(value)]="selectedOrdem">
+          <mat-option>None</mat-option>
+          <mat-option value="level">Level</mat-option>
+          <mat-option value="frequencia">Frequência</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-sm-12 col-md-3">
+      <mat-form-field>
+        <mat-label>Buscar por</mat-label>
+        <mat-select [(value)]="selectedBusca">
+          <mat-option>None</mat-option>
+          <mat-option value="level">Level</mat-option>
+          <mat-option value="descricao">Descrição</mat-option>
+          <mat-option value="origem">Origem</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-sm-12 col-md-3">
+      <!-- Filter -->
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
     </div>
   </div>
-  <div class="row wrapper">
-    <div class="col-sm-10 col-md-8">
-      <h5>Detalhes</h5>
-      file...
-      <br>
-      file...
-      <br>
-      file...
-      <br>
-      file...
-      <br>
-      file...
-    </div> -->
-    <div class="col-sm-2 col-md-4">
-      <div class="row">
-        <div class="col">
-            <h5>Coletado por</h5>
-            
-            Token do usuario {{token}}
-        </div>
-        
-      </div>
-    </div>
+
+    <button mat-stroked-button color="primary">Arquivar</button>
+    <button mat-stroked-button color="accent">Apagar</button>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="log">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Log </th>
+        <td mat-cell *matCellDef="let row"> {{row.log}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="level">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Level </th>
+        <td mat-cell *matCellDef="let row"> {{row.level}} </td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="evento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Evento </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.evento"> {{row.evento}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
+
+
 </div>
-
-<!-- <div class="col-md-6">
-  <h2> User Details</h2>
-  
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th class="hidden">Id</th>
-      <th>FirstName</th>
-      <th>LastName</th>
-      <th>Email</th>
-      <th>Action</th>
-    </tr>
-    </theadv
-    <tbody>
-    <tr *ngFor="let user of users">
-      <td class="hidden"></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><button class="btn btn-danger" (click)="changeStatus(log)"> Delete User</button></td>
-    </tr>
-    </tbody>
-  </table>
-  </div> -->
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Central de Erros - Dashboard</title>
-  </head>
-  <body>
-    <header class="header-dashboard">
-      <section class="user-welcome"></section>
-      <section class="user-menu"></section>
-    </header>
-    <nav class="dashboard-filters">
-      <section class="filters-selection">
-        <form>
-          <select name="ambiente" id="ambiente" class="select-filters">
-            <option value="desenvolvimento">Desenvolvimento</option>
-            <option value="homologacao">Homologação</option>
-            <option value="producao">Produção</option>
-          </select>
-          <select name="ordenar" id="ordenar" class="select-filters">
-            <option value="level">Level</option>
-            <option value="frequencia">Frequência</option>
-          </select>
-          <select name="buscar" id="buscar" class="select-filters">
-            <option value="level">Level</option>
-            <option value="descricao">Descrição</option>
-            <option value="origem">Origem</option>
-          </select>
-          <input type="text" id="busca-input" class="dashboard-input" />
-          <button type="submit" class="busca-button">Buscar</button>
-        </form>
-      </section>
-      <section class="filters-buttons">
-        <button class="filter-button">Arquivar</button>
-        <button class="filter-button">Apagar</button>
-        <button class="filter-button">Atualizar</button>
-      </section>
-    </nav>
-    <main class="main-dashboard">
-      <section class="table-header">
-        <div class="table-header-item">Level</div>
-        <div class="table-header-item">Log</div>
-        <div class="table-header-item">Eventos</div>
-      </section>
-      <section class="table-body">
-        <div class="table-body-item">
-          <div class="table-item-level">
-            <div class="level-error">Error</div>
-          </div>
-          <div class="table-item-level">
-            <div class="level-warning">Warning</div>
-          </div>
-          <div class="table-item-level">
-            <div class="level-debug">Debug</div>
-          </div>
-          <div class="table-item-level">
-            <div class="level-error">Error</div>
-          </div>
-        </div>
-        <div class="table-body-item">
-          <div class="table-item-log">
-            <div class="description-error">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-              molestias nam vel atque vitae provident quasi ex repellendus.
-            </div>
-          </div>
-          <div class="table-item-log">
-            <div class="description-error">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-              molestias nam vel atque vitae provident quasi ex repellendus.
-            </div>
-          </div>
-          <div class="table-item-log">
-            <div class="description-error">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-              molestias nam vel atque vitae provident quasi ex repellendus.
-            </div>
-          </div>
-          <div class="table-item-log">
-            <div class="description-error">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-              molestias nam vel atque vitae provident quasi ex repellendus.
-            </div>
-          </div>
-        </div>
-        <div class="table-body-item">
-          <div class="table-item-eventos">
-            <div class="event-error">1000</div>
-          </div>
-          <div class="table-item-eventos">
-            <div class="event-error">300</div>
-          </div>
-          <div class="table-item-eventos">
-            <div class="event-error">100</div>
-          </div>
-          <div class="table-item-eventos">
-            <div class="event-error">11</div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer>&copy; 2019 - Squad 3 Java Women</footer>
-  </body>
-</html -->

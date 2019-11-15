@@ -12,7 +12,7 @@ import { LogService } from '../services/log.service';
 
 export class LogListingComponent implements OnInit {
   
-  log: Log [];
+  log;
   logs = this.log;  
   
   constructor(private router: Router, private logService: LogService) { }
@@ -39,7 +39,7 @@ export class LogListingComponent implements OnInit {
       })
   };
 
-  getLogById(id: number): Log {
+  getLogById(id: number) {
     this.logService.getLogById(id)
   }
 
