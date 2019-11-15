@@ -41,9 +41,15 @@ public class LogService implements LogServiceInterface {
     }
 
     @Override
-    public List<Log> findLogByEnvironmentAndOrderBy(String environment, String orderBy) {
+    public List<Log> findLogByEnvironmentAndOrderByLevel(String environment) {
 
-        return logRepository.findLogByEnvironmentAndOrderBy(environment,orderBy);
+        return logRepository.findLogByEnvironmentAndOrderByLevel(environment);
+    }
+
+    @Override
+    public List<Log> findLogByEnvironmentAndOrderByEvent(String environment) {
+
+        return logRepository.findLogByEnvironmentAndOrderByEvent(environment);
     }
 
     @Override
@@ -53,9 +59,16 @@ public class LogService implements LogServiceInterface {
     }
 
     @Override
-    public List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy){
+    public List<Log> findLogByEnvironmentAndSearchByAndOrderByLevel(String environment, String searchBy){
 
 
-        return logRepository.findLogByEnvironmentAndOrderByAndSearchBy(environment, orderBy, searchBy);
+        return logRepository.findLogByEnvironmentAndSearchByAndOrderByLevel(environment, searchBy);
+    }
+
+    @Override
+    public List<Log> findLogByEnvironmentAndSearchByAndOrderByEvent(String environment, String searchBy){
+
+
+        return logRepository.findLogByEnvironmentAndSearchByAndOrderByEvent(environment, searchBy);
     }
 }

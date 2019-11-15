@@ -49,4 +49,7 @@ public class Log implements Serializable {
     @OneToOne
     private User tokenCollected;
 
+    @Column(name = "event",nullable = false)
+    private int event;
+
 }

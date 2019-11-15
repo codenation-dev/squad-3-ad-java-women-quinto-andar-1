@@ -17,9 +17,13 @@ public interface LogServiceInterface {
 
     List<Log> findLogByEnvironment(String environment);
 
-    List<Log> findLogByEnvironmentAndOrderBy(String environment, String orderBy);
+    List<Log> findLogByEnvironmentAndOrderByLevel(String environment);
+
+    List<Log> findLogByEnvironmentAndOrderByEvent(String environment);
 
     List<Log> findLogByEnvironmentAndSearchBy(String environment, String searchBy);
 
-    List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy);
+    List<Log> findLogByEnvironmentAndSearchByAndOrderByLevel(String environment, String searchBy);
+
+    List<Log> findLogByEnvironmentAndSearchByAndOrderByEvent(String environment, String searchBy);
 }

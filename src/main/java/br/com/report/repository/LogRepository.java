@@ -1,6 +1,8 @@
 package br.com.report.repository;
 
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.report.entity.Log;
@@ -21,9 +23,16 @@ public interface LogRepository extends JpaRepository<Log, Long> {
     @Query(value = "SELECT * " +
             "FROM tb_log " +
             "WHERE environment= :environment " +
-            "ORDER BY :orderBy ;",
+            "ORDER BY level ;",
             nativeQuery = true)
-    List<Log> findLogByEnvironmentAndOrderBy(@Param("environment")String environment, @Param("orderBy")String orderBy);
+    List<Log> findLogByEnvironmentAndOrderByLevel(@Param("environment")String environment);
+
+    @Query(value = "SELECT * " +
+            "FROM tb_log " +
+            "WHERE environment= :environment " +
+            "ORDER BY level ;",
+            nativeQuery = true)
+    List<Log> findLogByEnvironmentAndOrderByEvent(@Param("environment")String environment);
 
     @Query(value = "SELECT * " +
             "FROM tb_log " +
@@ -39,6 +48,17 @@ public interface LogRepository extends JpaRepository<Log, Long> {
             "AND (level = :searchBy " +
             "OR origin = :searchBy " +
             "OR description = :searchBy ) " +
-            "ORDER BY :orderBy ;", nativeQuery = true)
-    List<Log> findLogByEnvironmentAndOrderByAndSearchBy(@Param("environment")String environment, @Param("searchBy")String searchBy,@Param("orderBy")String orderBy);
+            "ORDER BY level ;", nativeQuery = true)
+    List<Log> findLogByEnvironmentAndSearchByAndOrderByLevel(@Param("environment")String environment, @Param("searchBy")String searchBy);
+
+    @Query(value = "SELECT * " +
+            "FROM tb_log " +
+            "WHERE environment = :environment " +
+            "AND (level = :searchBy " +
+            "OR origin = :searchBy " +
+            "OR description = :searchBy ) " +
+            "ORDER BY event ;", nativeQuery = true)
+    List<Log> findLogByEnvironmentAndSearchByAndOrderByEvent(@Param("environment")String environment, @Param("searchBy")String searchBy);
+
 }
+
