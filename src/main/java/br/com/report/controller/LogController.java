@@ -2,6 +2,8 @@ package br.com.report.controller;
 
 import br.com.report.entity.Log;
 
+import br.com.report.entity.User;
+import br.com.report.payload.LogRequest;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -22,14 +24,15 @@ public class LogController {
     @Autowired
     private LogService logService;
 
+    @Autowired
+    private UserController userController;
 
     @ApiOperation(value = "Add a new log")
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 400, message = "Bad Request")
-//    })
     @PostMapping("/log")
-    public ResponseEntity<Log> addLog(@RequestBody Log log){
+    public ResponseEntity<Log> addLog(@RequestBody LogRequest logRequest){
         try{
+            User user = userController.findByToken(logRequest.getUserToken());
+            Log log = new Log(logRequest.getLevel(), logRequest.getOrigin(), logRequest.getDescription(), logRequest.getDetails(), logRequest.getStatus(), logRequest.getEnvironment(), user);
             return new ResponseEntity<>(logService.addLog(log), HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity(new br.com.report.payload.ApiResponse(false, "Error trying to register a log"),
