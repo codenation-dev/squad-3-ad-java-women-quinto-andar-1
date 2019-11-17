@@ -10,5 +10,6 @@ public interface UserServiceInterface {
     Optional<User> findById(Long id);
     List<User> findAll();
     void changeStatus(User user);
+    Optional<User> findByToken(String token);
 
 }
