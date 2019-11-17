@@ -15,6 +15,8 @@ export class ErrorViewComponent implements OnInit {
   public hora;
   public status;
   public titulo;
+  public level;
+  public details;
   public token;
   public id = sessionStorage.getItem('logId');
 
@@ -24,12 +26,25 @@ export class ErrorViewComponent implements OnInit {
     this.logService.getLogById(this.id)
     .subscribe(data => {
     console.log(data);
-    //this.ip = data.ip;  // trocar depois
+    this.getItems(data);
+    //this.ip = ip;  // trocar depois
     //this.data = data.data;
     //this.hora = data.hora;
     //this.status = data.status;
     //this.titulo = data.titulo;
     //this.token = data.token;
     });
+  }
+
+  getItems(data){
+    console.log(data);
+    this.ip = data.origin;  // trocar depois
+    this.data = data.dataLogged;
+   // this.hora = data.hora;
+    this.level = data.level;
+    this.details = data.details;
+    this.status = data.status;
+    this.titulo = data.description;
+    this.token = data.tokenCollected;
   }
 }

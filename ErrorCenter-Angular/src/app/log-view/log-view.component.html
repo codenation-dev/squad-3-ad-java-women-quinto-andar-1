@@ -1,11 +1,11 @@
 <!--<app-header></app-header>-->
 
 <div class="container wrapper">
-    <button mat-stroked-button color="primary">Voltar</button>
+    <button mat-stroked-button color="primary" routerLink="/home">Voltar</button>
   <div class="row wrapper">
     <div class="col">
         <h2>
-            Erro no 127.0.0.1 {{ip}} em 24/05/2019 10:15{{data}} {{hora}}
+            Erro no {{ip}} em {{data}} {{hora}}
             </h2>
     </div>
     
@@ -13,13 +13,12 @@
   <div class="row wrapper">
     <div class="col-sm-10 col-md-8">
       <h5>Titulo</h5>
-      acceleration.Service.AddCandidate: forbiden
       {{titulo}}
     </div>
     <div class="col-sm-2 col-md-4">
       <div class="row">
         <div class="col">
-            error {{status}}
+            {{level}}
             <br>
         </div>
         
@@ -27,7 +26,7 @@
       <div class="row">
         <div class="col wrapper">
           <h5>Eventos</h5>
-          <p>1000</p> 
+          <p>1000 {{eventos}}</p> 
         </div>
       </div>
     </div>
@@ -35,22 +34,13 @@
   <div class="row wrapper">
     <div class="col-sm-10 col-md-8">
       <h5>Detalhes</h5>
-      file...
-      <br>
-      file...
-      <br>
-      file...
-      <br>
-      file...
-      <br>
-      file...
+        {{details}}
     </div>
     <div class="col-sm-2 col-md-4">
       <div class="row">
         <div class="col">
             <h5>Coletado por</h5>
-            
-            Token do usuario {{token}}
+              {{token}}
         </div>
         
       </div>
