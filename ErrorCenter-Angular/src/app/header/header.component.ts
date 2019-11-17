@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   gotoCadastroClientes() {
-    this.router.navigate(['/user-register']);
+    this.router.navigate(['/signup']);
    }
 
   logout(){

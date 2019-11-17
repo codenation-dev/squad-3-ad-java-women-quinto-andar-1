@@ -29,6 +29,7 @@ import { ModalNotRegisteredComponent } from './modal-not-registered/modal-not-re
 import { ErrorViewComponent } from './log-view/log-view.component';
 import { LogListingComponent } from './log-listing/log-listing.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material';
 
 
 @NgModule({
@@ -59,8 +60,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatSelectModule,
     HttpClientModule,
-    MatSnackBarModule
-    
+    MatSnackBarModule,
+    MatIconModule    
   ],
   providers: [AuthGuard, AuthService],
   entryComponents: [ModalNotRegisteredComponent,SuccessfulRegisterComponent],

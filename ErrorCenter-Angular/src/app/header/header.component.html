@@ -12,7 +12,7 @@
   <button *ngIf="loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" (click)="logout()">
     Sair
   </button>
-  <button *ngIf="!loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" routerLink="/user-register">
+  <button *ngIf="!loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" routerLink="/signup">
       Cadastrar
   </button>
   <button *ngIf="!loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" routerLink="/login">

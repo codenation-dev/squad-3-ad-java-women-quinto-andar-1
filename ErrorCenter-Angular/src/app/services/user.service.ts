@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
+import { VariableEnvironmentService } from './variable-environment.service';
 //import { Log } from "../Log";
 
 @Injectable({
@@ -8,13 +9,13 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class UserService {
 
-  private userUrl = 'https://central-de-erros.herokuapp.com';
+  private userUrl = this.variableEnvironment.url;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private variableEnvironment : VariableEnvironmentService) { }
 
   /**GET users */
   getUsers(){

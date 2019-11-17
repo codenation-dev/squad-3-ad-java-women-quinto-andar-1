@@ -9,13 +9,12 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { ErrorViewComponent } from './log-view/log-view.component';
 import { LogListingComponent } from './log-listing/log-listing.component';
 
-
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'user-register', component: UserRegisterComponent },
+  { path: 'signup', component: UserRegisterComponent },
   { path: 'home', component: ContentComponent, canActivate: [AuthGuard] },
-  { path: 'log-view', component: ErrorViewComponent, canActivate: [AuthGuard] },
-  { path: 'log-listing', component: LogListingComponent},
+  { path: 'logview', component: ErrorViewComponent, canActivate: [AuthGuard] },
+  //{ path: 'log-listing', component: LogListingComponent},
   { path: 'access-denied', component: AccessDeniedComponent },
   { path: 'login', component: LoginComponent },
 ];

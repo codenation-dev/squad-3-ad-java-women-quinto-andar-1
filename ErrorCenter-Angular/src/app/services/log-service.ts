@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 })
 export class LogService {
 
-  private url = 'http://localhost:8080';
+  private url = 'https://central-de-erros.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 

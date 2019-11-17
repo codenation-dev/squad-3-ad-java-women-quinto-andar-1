@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { Log } from '../model/log';
+import { VariableEnvironmentService } from './variable-environment.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,7 +14,7 @@ const httpOptions = {
 })
 export class LogService {
 
-  private logUrl = 'https://central-de-erros.herokuapp.com';
+  private logUrl = this.variableEnvironment.url;
 	//private logUrl = '/api';
 
   httpOptions = {
@@ -25,7 +26,7 @@ export class LogService {
       .set('Authorization',  sessionStorage.getItem('token'))
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private variableEnvironment : VariableEnvironmentService) { }
 
   /**GET logs */
   getLogs(){
@@ -40,7 +41,7 @@ export class LogService {
 
   /**Get log by Id */
   getLogById(id){
-    return this.http.get(this.logUrl + "/api/log/" + id);
+    return this.http.get(this.logUrl + "/api/log/id/" + id, this.header);
   }
 
   changeStatus(Log) {

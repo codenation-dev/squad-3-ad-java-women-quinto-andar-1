@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LogService } from '../services/log-service';
 import { Log } from '../model/log';
+import { LogService } from '../services/log.service';
 
 @Component({
   selector: 'app-log-view',
@@ -21,7 +21,7 @@ export class ErrorViewComponent implements OnInit {
   constructor(private router: Router, private logService: LogService) { }
 
   ngOnInit() {
-    this.logService.findLogById(this.id)
+    this.logService.getLogById(this.id)
     .subscribe(data => {
     console.log(data);
     //this.ip = data.ip;  // trocar depois

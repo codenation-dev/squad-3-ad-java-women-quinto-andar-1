@@ -49,7 +49,7 @@ export class ContentComponent implements OnInit {
   selectedAmb = 'producao';
 ELEMENT_DATA;
   // ----- Tabela -----
-  displayedColumns: string[] = ['select', 'id', 'level', 'log', 'evento'];
+  displayedColumns: string[] = ['select', 'visualize', 'id', 'level', 'log', 'evento'];
   dataSource: MatTableDataSource<UserData>;
   selection = new SelectionModel<UserData>(true, []);
 
@@ -80,8 +80,6 @@ ELEMENT_DATA;
 
   ngOnInit() {
 
-
-
   }
 
   fillTable(res){
@@ -92,8 +90,13 @@ ELEMENT_DATA;
     this.dataSource.sort = this.sort;
   }
 
+  expandLog(id){
+    sessionStorage.setItem('logId', id);
+    this.router.navigate(['/logview']);
+  }
+
   gotoCadastroClientes() {
-    this.router.navigate(['/user-register']);
+    this.router.navigate(['/signup']);
   }
 
   applyFilter(filterValue: string) {
