@@ -29,7 +29,7 @@ public interface LogRepository extends JpaRepository<Log, Long> {
     @Query(value = "SELECT * " +
             "FROM tb_log " +
             "WHERE environment= :environment " +
-            "ORDER BY level ;",
+            "ORDER BY event ;",
             nativeQuery = true)
     List<Log> findLogByEnvironmentAndOrderByEvent(@Param("environment")String environment);
 
