@@ -38,7 +38,7 @@ public interface LogRepository extends JpaRepository<Log, Long> {
             "WHERE environment =:environment " +
             "AND (level =:searchBy " +
             "OR origin =:searchBy " +
-            "OR description =:searchBy );", nativeQuery = true)
+            "OR description like %:searchBy% );", nativeQuery = true)
     List<Log> findLogByEnvironmentAndSearchBy(@Param("environment") String environment,@Param("searchBy") String searchBy);
 
     @Query(value = "SELECT * " +
@@ -46,7 +46,7 @@ public interface LogRepository extends JpaRepository<Log, Long> {
             "WHERE environment = :environment " +
             "AND (level = :searchBy " +
             "OR origin = :searchBy " +
-            "OR description = :searchBy ) " +
+            "OR description like %:searchBy% ) " +
             "ORDER BY level ;", nativeQuery = true)
     List<Log> findLogByEnvironmentAndSearchByAndOrderByLevel(@Param("environment")String environment, @Param("searchBy")String searchBy);
 
@@ -55,34 +55,7 @@ public interface LogRepository extends JpaRepository<Log, Long> {
             "WHERE environment = :environment " +
             "AND (level = :searchBy " +
             "OR origin = :searchBy " +
-            "OR description = :searchBy ) " +
+            "OR description like %:searchBy% ) " +
             "ORDER BY event ;", nativeQuery = true)
     List<Log> findLogByEnvironmentAndSearchByAndOrderByEvent(@Param("environment")String environment, @Param("searchBy")String searchBy);
-
-//
-//    List<Log> findLogByEnvironment(String environment);
-//
-//    @Query(value = "SELECT * " +
-//            "FROM logs " +
-//            "WHERE environment= :environment " +
-//            "ORDER BY :orderBy",
-//            nativeQuery = true)
-//    List<Log> findLogByEnvironmentAndOrderBy(String environment, String orderBy);
-//
-//    @Query(value = "SELECT * " +
-//            "FROM logs " +
-//            "WHERE environment = :environment" +
-//            "AND (level = :searchBy" +
-//            "OR origin = :searchBy" +
-//            "OR description = :searchBy )", nativeQuery = true)
-//    List<Log> findLogByEnvironmentAndSearchBy(String environment, String searchBy);
-//
-//    @Query(value = "SELECT * " +
-//            "FROM logs " +
-//            "WHERE environment = :environment" +
-//            "AND (level = :searchBy" +
-//            "OR origin = :searchBy" +
-//            "OR description = :searchBy )" +
-//            "ORDER BY :orderBy", nativeQuery = true)
-//    List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy);
 }
