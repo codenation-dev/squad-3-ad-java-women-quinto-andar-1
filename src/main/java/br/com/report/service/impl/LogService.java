@@ -71,27 +71,5 @@ public class LogService implements LogServiceInterface {
 
         return logRepository.findLogByEnvironmentAndSearchByAndOrderByEvent(environment, searchBy);
     }
-//    @Override
-//    public List<Log> findLogByEnvironment(String environment) {
-//        return logRepository.findLogByEnvironment(environment);
-//    }
-//
-//    @Override
-//    public List<Log> findLogByEnvironmentAndOrderBy(String environment, String orderBy) {
-//
-//        return logRepository.findLogByEnvironmentAndOrderBy(environment,orderBy);
-//    }
-//
-//    @Override
-//    public List<Log> findLogByEnvironmentAndSearchBy(String environment, String searchBy) {
-//
-//        return logRepository.findLogByEnvironmentAndSearchBy(environment, searchBy);
-//    }
-//
-//    @Override
-//    public List<Log> findLogByEnvironmentAndOrderByAndSearchBy(String environment, String orderBy, String searchBy){
-//
-//
-//        return logRepository.findLogByEnvironmentAndOrderByAndSearchBy(environment, orderBy, searchBy);
-//    }
+
 }
