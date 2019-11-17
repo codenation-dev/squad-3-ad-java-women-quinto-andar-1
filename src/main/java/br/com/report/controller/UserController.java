@@ -44,6 +44,10 @@ public class UserController {
         Optional<User> findUser = userService.findById(id);
         findUser.orElseThrow(()-> new NotFoundException("Not found user with id: " + id));
         userService.changeStatus(user);
+    }
 
+    public User findByToken(String token) throws NotFoundException {
+        Optional<User> user = userService.findByToken(token);
+        return user.orElse(null);
     }
 }
