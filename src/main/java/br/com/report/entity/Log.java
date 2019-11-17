@@ -51,6 +51,15 @@ public class Log implements Serializable {
     private String environment;
 
     @OneToOne
-    private User tokenCollected;
+    private User user;
 
+    public Log(@Size(max = 20) String level, @Size(max = 50) String origin, @Size(max = 128) String description, @Size(max = 300) String details, @Size(max = 10) String status, @Size(max = 50) String environment, User user) {
+        this.level = level;
+        this.origin = origin;
+        this.description = description;
+        this.details = details;
+        this.status = status;
+        this.environment = environment;
+        this.user = user;
+    }
 }
