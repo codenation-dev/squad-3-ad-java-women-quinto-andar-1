@@ -2,11 +2,13 @@ package br.com.report.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -36,7 +38,9 @@ public class Log implements Serializable {
     @Size(max = 300)
     private String details;
 
-    private Timestamp dataLogged;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant dataLogged;
 
     @Column(name="status", nullable = false)
     @Size(max = 10)
