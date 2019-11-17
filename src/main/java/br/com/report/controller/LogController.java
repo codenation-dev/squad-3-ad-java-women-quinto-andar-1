@@ -66,7 +66,74 @@ public class LogController {
     @ApiOperation(value = "Lists logs in chosen environment")
     @GetMapping("/log/{environment}")
     public List<Log> findLogByEnvironment(@PathVariable(value = "environment") String environment)
-                                            throws NotFoundException {
+            throws NotFoundException {
+        List<Log> logs = logService.findLogByEnvironment(environment);
+        if(logs.isEmpty()){
+            throw new NotFoundException("The list is empty");
+        }
+        return logs;
+    }
+
+    @ApiOperation(value = "Return logs by environment and ordered by level")
+    @GetMapping("/log/envOrdLev/{environment}")
+    public List<Log> findLogByEnvironmentAndOrderByLevel(@PathVariable(value = "environment") String environment)
+            throws NotFoundException{
+        List<Log> logs = logService.findLogByEnvironmentAndOrderByLevel(environment);
+        if(logs.isEmpty()){
+            throw new NotFoundException("The list is empty");
+        }
+        return logs;
+    }
+
+    @ApiOperation(value = "Return logs by environment and ordered by event")
+    @GetMapping("/log/envOrdEve/{environment}")
+    public List<Log> findLogByEnvironmentAndOrderByEvent(@PathVariable(value = "environment") String environment)
+            throws NotFoundException{
+        List<Log> logs = logService.findLogByEnvironmentAndOrderByEvent(environment);
+        if(logs.isEmpty()){
+            throw new NotFoundException("The list is empty");
+        }
+        return logs;
+    }
+
+    @ApiOperation(value = "Return logs by environment and with inserted search term")
+    @GetMapping("/log/{environment}/{searchBy}")
+    public List<Log> findLogByEnvironmentAndSearchBy(@PathVariable(value = "environment")String environment,
+                                                     @PathVariable(value = "searchBy")String searchBy)
+            throws NotFoundException{
+        List<Log> logs = logService.findLogByEnvironmentAndSearchBy(environment, searchBy);
+        if(logs.isEmpty()){
+            throw new NotFoundException("The list is empty");
+        }
+        return logs;
+    }
+
+    @ApiOperation(value = "Return logs by environment, with inserted search term and ordered by chosen parameter")
+    @GetMapping("/log/envOrdLev/{environment}/{searchBy}")
+    public List<Log> findLogByEnvironmentAndSearchByAndOrderByLevel(@PathVariable(value = "environment") String environment,
+                                                                    @PathVariable(value="searchBy") String searchBy) throws NotFoundException{
+        List<Log> logs = logService.findLogByEnvironmentAndSearchByAndOrderByLevel(environment, searchBy);
+        if(logs.isEmpty()){
+            throw new NotFoundException("The list is empty");
+        }
+        return logs;
+    }
+
+    @ApiOperation(value = "Return logs by environment, with inserted search term and ordered by chosen parameter")
+    @GetMapping("/log/envOrdEve/{environment}/{searchBy}")
+    public List<Log> findLogByEnvironmentAndSearchByAndOrderByEvent(@PathVariable(value = "environment") String environment,
+                                                                    @PathVariable(value="searchBy") String searchBy) throws NotFoundException{
+        List<Log> logs = logService.findLogByEnvironmentAndSearchByAndOrderByEvent(environment, searchBy);
+        if(logs.isEmpty()){
+            throw new NotFoundException("The list is empty");
+        }
+        return logs;
+    }
+/*
+    @ApiOperation(value = "Lists logs in chosen environment")
+    @GetMapping("/log/{environment}")
+    public List<Log> findLogByEnvironment(@PathVariable(value = "environment") String environment)
+            throws NotFoundException {
         List<Log> logs = logService.findLogByEnvironment(environment);
         if(logs.isEmpty()){
             throw new NotFoundException("The list is empty");
@@ -110,4 +177,6 @@ public class LogController {
         }
         return logs;
     }
+
+ */
 }
