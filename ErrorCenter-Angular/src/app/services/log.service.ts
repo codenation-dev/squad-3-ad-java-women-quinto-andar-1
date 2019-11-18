@@ -31,7 +31,6 @@ export class LogService {
   /**GET logs */
   getLogs(){
     console.log("GET DOS LOGS");
-    console.log(this.header);
     return this.http.get(this.logUrl + "/api/log", this.header);
   }
 

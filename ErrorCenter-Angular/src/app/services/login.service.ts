@@ -28,7 +28,7 @@ export class LoginService {
           console.log("userData");
           console.log(userData);
 
-         sessionStorage.setItem('username',username);
+         //sessionStorage.setItem('username',username);
          let tokenStr= 'Bearer ' + userData.accessToken;
          sessionStorage.setItem('token', tokenStr);
          return userData;
