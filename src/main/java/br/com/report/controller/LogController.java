@@ -4,9 +4,8 @@ import br.com.report.entity.Log;
 
 import br.com.report.entity.User;
 import br.com.report.payload.LogRequest;
+import br.com.report.payload.Response;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import br.com.report.service.impl.LogService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class LogController {
             Log log = new Log(logRequest.getLevel(), logRequest.getOrigin(), logRequest.getDescription(), logRequest.getDetails(), logRequest.getStatus(), logRequest.getEnvironment(), logRequest.getEvent(), user);
             return new ResponseEntity<>(logService.addLog(log), HttpStatus.CREATED);
         }catch(Exception e){
-            return new ResponseEntity(new br.com.report.payload.ApiResponse(false, "Error trying to register a log"),
+            return new ResponseEntity(new Response(false, "Error trying to register a log"),
                     HttpStatus.BAD_REQUEST);
         }
     }
@@ -48,7 +47,7 @@ public class LogController {
             return new ResponseEntity<Log>(log.get(), HttpStatus.OK);
 
         return new ResponseEntity(
-                new br.com.report.payload.ApiResponse(false, "Not found log with id: " + id),
+                new Response(false, "Not found log with id: " + id),
                 HttpStatus.NOT_FOUND);
     }
 
