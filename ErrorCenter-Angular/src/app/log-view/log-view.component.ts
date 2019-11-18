@@ -45,6 +45,6 @@ export class ErrorViewComponent implements OnInit {
     this.details = data.details;
     this.status = data.status;
     this.titulo = data.description;
-    this.token = data.tokenCollected;
+    this.token = data.user.token;
   }
 }
