@@ -50,7 +50,7 @@ export class ContentComponent implements OnInit {
 ELEMENT_DATA;
   // ----- Tabela -----
   displayedColumns: string[] = ['select', 'visualize', 'id', 'level', 'log', 'evento'];
-  dataSource: MatTableDataSource<UserData>;
+  dataSource: MatTableDataSource<UserData> = new MatTableDataSource<UserData>();;
   selection = new SelectionModel<UserData>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
