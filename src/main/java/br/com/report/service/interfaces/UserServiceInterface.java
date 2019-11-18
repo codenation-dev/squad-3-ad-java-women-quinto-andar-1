@@ -11,5 +11,6 @@ public interface UserServiceInterface {
     List<User> findAll();
     void changeStatus(User user);
     Optional<User> findByToken(String token);
+    Optional<User> findByLoginOrEmail(String loginOrEmail);
 
 }
