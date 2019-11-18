@@ -1,13 +1,15 @@
 package br.com.report.controller;
 
 import br.com.report.entity.User;
-import br.com.report.payload.ApiResponse;
+import br.com.report.payload.Response;
 import br.com.report.payload.JwtAuthenticationResponse;
 import br.com.report.payload.LoginRequest;
 import br.com.report.payload.SignUpRequest;
 import br.com.report.repository.UserRepository;
 import br.com.report.security.JwtTokenProvider;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,15 +59,20 @@ public class AuthController {
     }
 
     @ApiOperation(value = "Add a new user in database")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Retorna a lista de pessoa", response = Response.class),
+            @ApiResponse(code = 401, message = "Você não tem permissão para acessar este recurso", response = Response.class),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção", response = Response.class),
+    })
     @PostMapping("/cad")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByLogin(signUpRequest.getLogin())) {
-            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
+            return new ResponseEntity(new Response(false, "Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
+            return new ResponseEntity(new Response(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
 
@@ -75,7 +82,7 @@ public class AuthController {
         user.setToken();
         User result = userRepository.save(user);
 
-        return new ResponseEntity(new ApiResponse(true, "User registered successfully"),
+        return new ResponseEntity(new Response(true, "User registered successfully"),
                 HttpStatus.CREATED);
  }
 }

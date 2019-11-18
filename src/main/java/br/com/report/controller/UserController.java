@@ -6,11 +6,9 @@ import io.swagger.annotations.ApiOperation;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -45,6 +43,16 @@ public class UserController {
         Optional<User> findUser = userService.findById(id);
         findUser.orElseThrow(()-> new NotFoundException("Not found user with id: " + id));
         userService.changeStatus(user);
-
     }
+
+    public User findByToken(String token) throws NotFoundException {
+        Optional<User> user = userService.findByToken(token);
+        return user.orElse(null);
+    }
+
+    public User findByLoginOrEmail(String loginOrEmail) throws NotFoundException {
+        Optional<User> user = userService.findByLoginOrEmail(loginOrEmail);
+        return user.orElse(null);
+    }
+
 }
