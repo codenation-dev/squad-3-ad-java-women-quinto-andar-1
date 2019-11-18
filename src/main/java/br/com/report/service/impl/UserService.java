@@ -35,4 +35,10 @@ public class UserService implements UserServiceInterface {
 		return userRepository.findByToken(token);
 	}
 
+	@Override
+	public Optional<User> findByLoginOrEmail(String loginOrEmail){
+		return userRepository.findByLoginOrEmail(loginOrEmail,loginOrEmail);
+	}
+
+
 }
