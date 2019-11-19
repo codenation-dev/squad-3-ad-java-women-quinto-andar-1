@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-3">
       <mat-form-field>
-        <mat-label>Select an option</mat-label>
+        <mat-label>Selecione uma opção</mat-label>
         <mat-select [(value)]="selectedAmb">
           <mat-option value="producao">Produção</mat-option>
           <mat-option value="homologacao">Homologação</mat-option>
@@ -49,19 +49,19 @@
     <div class="col-sm-12 col-md-3">
       <!-- Filter -->
       <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
       </mat-form-field>
 
     </div>
   </div>
 
-    <button mat-stroked-button color="primary">Arquivar</button>
-    <button mat-stroked-button color="accent">Apagar</button>
+    <!-- <button mat-stroked-button color="primary">Arquivar</button>
+    <button mat-stroked-button color="accent">Apagar</button> -->
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
 
-      <!-- Checkbox Column -->
+      <!-- Checkbox Column
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
@@ -73,13 +73,13 @@
             [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
           </mat-checkbox>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Visualizar Column -->
       <ng-container matColumnDef="visualize">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ver Log </th>
         <td mat-cell *matCellDef="let row">
-            <button mat-icon-button aria-label="See the log" (click)="expandLog(row.id)">
+            <button mat-icon-button color="primary" aria-label="See the log" (click)="expandLog(row.id)">
                 <mat-icon>search</mat-icon>
               </button>  
         </td>
@@ -108,6 +108,26 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Evento </th>
         <td mat-cell *matCellDef="let row"> {{row.event}} </td>
       </ng-container>
+
+      <!-- Delet Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Remover </th>
+        <td mat-cell *matCellDef="let row">
+            <button mat-icon-button aria-label="Remove the log" (click)="changeLogStatusById(row.id, deleted)">
+                <mat-icon style="color: gray">delete_outline</mat-icon>
+              </button>  
+        </td>
+      </ng-container>    
+
+      <!-- Archive Column -->
+      <ng-container matColumnDef="archive">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Arquivar </th>
+        <td mat-cell *matCellDef="let row"> 
+              <button mat-icon-button aria-label="Archive the log" (click)="changeLogStatusById(row.id, archived)">
+                <mat-icon style="color: orange">archive</mat-icon>
+              </button>  
+        </td>
+      </ng-container>    
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;">

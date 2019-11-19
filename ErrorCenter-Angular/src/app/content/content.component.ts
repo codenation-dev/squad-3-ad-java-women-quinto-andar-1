@@ -30,6 +30,10 @@ const LEVELS: string[] = [
   'error', 'warning', 'debug', 'warning', 'error'
 ];
 
+const DELETED: string = 'deletado';
+const ARCHIVED: string = 'arquivado';
+
+
 //const ELEMENT_DATA: UserData[]; = [
  /* {id: '1', level: 'error', log: "Descrição do log", evento: '1000'},
   {id: '2', level: 'warning', log: "Descrição do log", evento: '400'},
@@ -47,14 +51,20 @@ const LEVELS: string[] = [
 export class ContentComponent implements OnInit {
   // ----- Select Forms -----
   selectedAmb = 'producao';
-ELEMENT_DATA;
+  ELEMENT_DATA;
+
   // ----- Tabela -----
-  displayedColumns: string[] = ['select', 'visualize', 'id', 'level', 'log', 'evento'];
+  displayedColumns: string[] = [/*'select',*/ 'id', 'level', 'log', 'evento', 'visualize', 'archive', 'delete'];
   dataSource: MatTableDataSource<UserData> = new MatTableDataSource<UserData>();;
   selection = new SelectionModel<UserData>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  // ----- status -----
+  deleted = DELETED;
+  archived = ARCHIVED;
+
 
   constructor(private router: Router, private logService: LogService) {
 
@@ -65,34 +75,57 @@ ELEMENT_DATA;
     // Assign the data to the data source for the table to render
 
 
-    logService.getLogs().subscribe(
+    // Fim do mockup-------------------------------------------------------------------------
+  }
+
+  ngOnInit() {
+    this.logService.getLogs().subscribe(
       response=>{
         console.log(response);
         let res = response;
-        console.log(res);
+        //console.log(res);
         this.fillTable(res);
         
 
       }
     );
-    // Fim do mockup-------------------------------------------------------------------------
-  }
-
-  ngOnInit() {
-
   }
 
   fillTable(res){
-    this.ELEMENT_DATA = res;
-    this.dataSource = new MatTableDataSource<UserData>(res);
+    var logFiltered = res.filter(item => this.isActive(item));
+
+    //this.ELEMENT_DATA = res;
+    this.dataSource = new MatTableDataSource<UserData>(logFiltered);
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
+  isActive(item){
+      if(item.status == 'ativo') return true;
+      return false;
+  }
+
   expandLog(id){
     sessionStorage.setItem('logId', id);
     this.router.navigate(['/logview']);
+  }
+
+  changeLogStatusById(id, status: string){
+    sessionStorage.setItem('logId', id);
+    this.logService.getLogById(id).subscribe(response => {
+      this.changeLogStatus(response, status);
+    });
+  }
+
+  changeLogStatus(logById, status){
+    console.log(logById.status);
+    logById.status = status;
+    console.log(logById.status);
+    console.log(logById);
+
+    this.logService.changeStatus(logById.id, logById).subscribe();
+    this.ngOnInit();
   }
 
   getColor(level: string){
