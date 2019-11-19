@@ -27,20 +27,4 @@ public class DateAudit implements Serializable {
     @Column(nullable = false)
     private Instant lastActivity;
 
-    public Instant getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Instant creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Instant getLastActivity() {
-        return lastActivity;
-    }
-
-    public void setLastActivity(Instant lastActivity) {
-        this.lastActivity = lastActivity;
-    }
-
 }
