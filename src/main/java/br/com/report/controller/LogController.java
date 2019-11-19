@@ -75,9 +75,10 @@ public class LogController {
     @PutMapping("/logs/status/{id}")
     public ResponseEntity<?> changeStatus(@RequestBody Log log, @PathVariable("id") Long id) {
         Optional<Log> findLog = logService.findById(id);
-        if(findLog.isPresent())
+        if(findLog.isPresent()){
+            logService.changeStatus(log);
             return new ResponseEntity<Log>(findLog.get(), HttpStatus.OK);
-        logService.changeStatus(log);
+        }
         return new ResponseEntity<>(
                 new Response(false, "Not found log with id: " + id),
                 HttpStatus.NOT_FOUND);
