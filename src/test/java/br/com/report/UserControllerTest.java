@@ -1,7 +1,9 @@
 package br.com.report;
 
+import br.com.report.entity.User;
 import br.com.report.payload.LoginRequest;
 import br.com.report.payload.SignUpRequest;
+import br.com.report.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,9 +17,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,9 +31,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @PropertySource("classpath:application-test.properties")
+@Transactional
 public class UserControllerTest {
     @Autowired
     private MockMvc mvc;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public static String asJsonString(final Object obj) {
         try {
@@ -54,6 +62,12 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON));
     }
 
+    private User getUser(Long id) throws Exception {
+        Optional<User> user = userRepository.findFirstByOrderById();
+        return user.orElse(null);
+
+    }
+
     private String obtainAccessToken(String username, String password) throws Exception {
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
@@ -76,10 +90,12 @@ public class UserControllerTest {
     @Test
     public void successFindByIdTest() throws Exception {
         generaterUser();
+        User user = getUser(1L);
+
         String token = obtainAccessToken("taina","TM@123");
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/user/1")
+                .get("/api/user/"+user.getId())
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -93,7 +109,7 @@ public class UserControllerTest {
         generaterUser();
         String token = obtainAccessToken("taina","TM@123");
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/users")
+                .get("/api/user")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -110,7 +126,7 @@ public class UserControllerTest {
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
 
         int resultString = result.andReturn().getResponse().getContentLength();
         assertEquals(0,resultString);
