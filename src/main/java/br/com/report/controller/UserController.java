@@ -52,25 +52,6 @@ public class UserController {
         return users;
     }
 
-    @ApiOperation(value = "Modify user on / off status")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Return the user who was modified", response = Response.class),
-            @ApiResponse(code = 401, message = "You do not have permission to access this feature.", response = Response.class),
-            @ApiResponse(code = 404, message = "User not found", response = Response.class),
-            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
-    })
-    @PutMapping("/user/{id}")
-    public ResponseEntity<?> changeStatus(@RequestBody User user, @PathVariable("id") Long id) throws NotFoundException {
-        Optional<User> findUser = userService.findById(id);
-        if(findUser.isPresent())
-            return new ResponseEntity<User>(findUser.get(), HttpStatus.OK);
-        userService.changeStatus(user);
-        return new ResponseEntity<>(
-                new Response(false, "Not found user with id: " + id),
-                HttpStatus.NOT_FOUND);
-    }
-
-
     public User findByToken(String token) throws NotFoundException {
         Optional<User> user = userService.findByToken(token);
         return user.orElse(null);
