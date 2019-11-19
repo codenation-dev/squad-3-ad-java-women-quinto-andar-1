@@ -1,7 +1,7 @@
-<!--<app-header></app-header>-->
+<app-header></app-header>
 
 <div class="container wrapper">
-    <button mat-stroked-button color="primary" routerLink="/home">Voltar</button>
+  <mat-card>
   <div class="row wrapper">
     <div class="col">
         <h2>
@@ -17,7 +17,7 @@
     </div>
     <div class="col-sm-2 col-md-4">
       <div class="row">
-        <div class="col">
+        <div class="col" [style.color]="getColor(level)">
             {{level}}
             <br>
         </div>
@@ -46,4 +46,9 @@
       </div>
     </div>
   </div>
+</mat-card>
+<div>
+  <button mat-stroked-button color="primary" routerLink="/home" style="margin-top: 10px; float: right;">Voltar</button>
+</div>
+
 </div>

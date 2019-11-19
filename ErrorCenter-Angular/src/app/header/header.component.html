@@ -1,14 +1,20 @@
-<div class="row wrapper-header">
+<div class="row wrapper-header" style="display: flex;
+align-items: center ">
+  <div class="col-sm-12 col-md-1">
+      <img class="img-responsive" src="assets/images/5andar.png" style="height: 50px;display: block;
+      margin-left: auto;
+      margin-right: auto">
+  </div>
   <div class="col-sm-12 col-md">
     <!--
     <ul class="menu-header">
       <li>Central de Erros</li>
     </ul>
     -->
-    <h5 *ngIf="loginService.isLoggedIn()">Bem Vindo(a) {{userName}}. Seu token é: {{userToken}}</h5>
+    <p *ngIf="loginService.isLoggedIn()" style="margin-top: auto;
+    margin-bottom: auto">Bem Vindo(a) {{userName}}. Seu token é: {{userToken}}</p>
   </div>
-
-<div class="col-sm-12 col-md">
+<div class="col-sm-12 col-md-4">
   <button *ngIf="loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" (click)="logout()">
     Sair
   </button>
@@ -18,6 +24,9 @@
   <button *ngIf="!loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" routerLink="/login">
       Login
   </button>
+</div>
+<div class="col-sm col-md-1">
+    <mat-icon style="font-size: 30px;">account_circle</mat-icon>
 </div>
   <!-- <div class="col-xs-12 col-md-2 align-left">
     <button class="btn btn-home-cadastro-clientes" (click)="gotoCadastroClientes()">Criar conta</button>

@@ -16,9 +16,12 @@
   </div>
 </form>
 -->
+<app-header></app-header>
 
 <div class="container mt-5 login-box">
-  <div class="form-row align-items-center">
+
+    <mat-card>
+  <div class="row box-cadastro">
     <div class="col-12">
       <h3 class="text-center">Login</h3>
       <span *ngIf="isFailedLogin" style="color: red">Usuário ou senha incorretos.</span>
@@ -37,4 +40,5 @@
       </form>
     </div>
   </div>
+</mat-card>
 </div>
