@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "tb_log")
 public class Log implements Serializable {
@@ -73,4 +72,7 @@ public class Log implements Serializable {
         this.user = user;
     }
 
+    public Long getId() {
+        return id;
+    }
 }
