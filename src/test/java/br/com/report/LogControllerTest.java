@@ -114,7 +114,7 @@ public class LogControllerTest {
 
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/id/"+ log.getId())
+                .get("/api/logs/id/"+ log.getId())
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -132,7 +132,7 @@ public class LogControllerTest {
 
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/id/10")
+                .get("/api/logs/id/10")
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -144,7 +144,7 @@ public class LogControllerTest {
     public void notUserLoginFindByIdLogTest() throws Exception{
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/id/1")
+                .get("/api/logs/id/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized());
@@ -160,7 +160,7 @@ public class LogControllerTest {
         generaterLog(user.getToken(), acessToken);
 
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log")
+                .get("/api/logs")
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -171,7 +171,7 @@ public class LogControllerTest {
     public void unauthorizedGetAllLog() throws Exception {
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log")
+                .get("/api/logs")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized());
@@ -186,7 +186,7 @@ public class LogControllerTest {
         generaterLog(user.getToken(), acessToken);
 
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/dev")
+                .get("/api/logs/dev")
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -202,7 +202,7 @@ public class LogControllerTest {
         generaterLog(user.getToken(), acessToken);
 
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/envOrdLev/dev")
+                .get("/api/logs/envOrdLev/dev")
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -218,7 +218,7 @@ public class LogControllerTest {
         generaterLog(user.getToken(), acessToken);
 
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/envOrdEve/dev")
+                .get("/api/logs/envOrdEve/dev")
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -234,7 +234,7 @@ public class LogControllerTest {
         generaterLog(user.getToken(), acessToken);
 
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/dev/error")
+                .get("/api/logs/dev/error")
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -250,7 +250,7 @@ public class LogControllerTest {
         generaterLog(user.getToken(), acessToken);
 
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/dev/classX.Controller")
+                .get("/api/logs/dev/classX.Controller")
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -266,7 +266,7 @@ public class LogControllerTest {
         generaterLog(user.getToken(), acessToken);
 
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/dev/classX.Controller")
+                .get("/api/logs/dev/classX.Controller")
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
