@@ -104,9 +104,6 @@ public class LogController {
     public List<Log> findLogByEnvironment(@PathVariable(value = "environment") String environment)
             throws NotFoundException {
         List<Log> logs = logService.findLogByEnvironment(environment);
-        if(logs.isEmpty()){
-            throw new NotFoundException("The list is empty");
-        }
         return logs;
     }
 
