@@ -95,7 +95,7 @@ public class UserControllerTest {
         String token = obtainAccessToken("taina","TM@123");
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/user/"+user.getId())
+                .get("/api/users/"+user.getId())
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -109,7 +109,7 @@ public class UserControllerTest {
         generaterUser();
         String token = obtainAccessToken("taina","TM@123");
         this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/user")
+                .get("/api/users")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -122,7 +122,7 @@ public class UserControllerTest {
         String token = obtainAccessToken("taina","TM@123");
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/user/4")
+                .get("/api/users/4")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -146,7 +146,7 @@ public class UserControllerTest {
     public void unauthorizedFindByIdTest() throws Exception {
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/user/4")
+                .get("/api/users/4")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized());
