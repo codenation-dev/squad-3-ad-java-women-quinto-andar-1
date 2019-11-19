@@ -31,28 +31,24 @@ export class LogService {
   /**GET logs */
   getLogs(){
     console.log("GET DOS LOGS");
-    return this.http.get(this.logUrl + "/api/log", this.header);
+    return this.http.get(this.logUrl + "/api/logs", this.header);
   }
 
-  addLog(Log){
-    return this.http.post(this.logUrl + "log", Log);
-  }
+  // addLog(Log){
+  //   return this.http.post(this.logUrl + "logs", Log);
+  // }
 
   /**Get log by Id */
   getLogById(id){
-    return this.http.get(this.logUrl + "/api/log/id/" + id, this.header);
+    return this.http.get(this.logUrl + "/api/logs/id/" + id, this.header);
   }
 
-  changeStatus(Log) {
-    return this.http.put(this.logUrl + "/"+ Log.id, Log);
+  changeStatus(id, body) {
+    return this.http.put(this.logUrl + "/api/logs/status/"+ id, body, this.header);
   // talvez tenha que mudar esse metodo. Pelo que vi o changeStatus dá um save. Será que não conflita com um log já existente?
   }
 
 
-  /**Post user */
-  postLogs(body: any){
-    return this.http.post(this.logUrl + "/api/auth/cad", body);
-  }
 
   findLogByEnvironmentAndOrderBy(environment: String, orderBy: String){
     return this.http.get<Log[]>(this.logUrl + "/api/{environment}/{orderBy}")}

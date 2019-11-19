@@ -25,19 +25,19 @@ export class LogListingComponent implements OnInit {
       });
   }
 
-  addLog(): void {
-    this.logService.addLog(this.log)
-        .subscribe( data => {
-          alert("Log added succesfully.");
-        });
-  }
+  // addLog(): void {
+  //   this.logService.addLog(this.log)
+  //       .subscribe( data => {
+  //         alert("Log added succesfully.");
+  //       });
+  // }
   
-  changeStatus(log: Log): void {
-    this.logService.changeStatus(log)
-      .subscribe( data => {
-        this.log = this.log.filter(u => u !== log);
-      })
-  };
+  // changeStatus(log: Log): void {
+  //   this.logService.changeStatus(log)
+  //     .subscribe( data => {
+  //       this.log = this.log.filter(u => u !== log);
+  //     })
+  // };
 
   getLogById(id: number) {
     this.logService.getLogById(id)
