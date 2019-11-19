@@ -1,10 +1,7 @@
 package br.com.report.controller;
 
 import br.com.report.entity.User;
-import br.com.report.payload.Response;
-import br.com.report.payload.JwtAuthenticationResponse;
-import br.com.report.payload.LoginRequest;
-import br.com.report.payload.SignUpRequest;
+import br.com.report.payload.*;
 import br.com.report.repository.UserRepository;
 import br.com.report.security.JwtTokenProvider;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -58,10 +56,15 @@ public class AuthController {
                 )
         );
 
+        Optional<User> login = userRepository.findByLoginOrEmail(loginRequest.getLogin(), loginRequest.getLogin());
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        LoginResponse response = new LoginResponse();
+        response.jwtAuthenticationResponse = new JwtAuthenticationResponse(jwt);
+        response.user = login.get();
+        return ResponseEntity.ok(response);
     }
 
     @ApiOperation(value = "Add a new user in database")
