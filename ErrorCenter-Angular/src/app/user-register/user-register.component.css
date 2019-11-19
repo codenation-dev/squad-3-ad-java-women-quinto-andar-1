@@ -1,20 +1,16 @@
-.box-cadastro {
-    margin: 30px;
-    padding: 30px;
-    }
-    .cadastro {
+.cadastro {
     padding: 10px;
     border: none;
     border-bottom: 2px solid #ddd;
     border-radius: 0;
     outline: none;
     height: 50px;
-    }
-    .btn-cadastro {
-        position: relative;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        background-color: #333;
-        border: 0;
-        color: #fff;
-    }
+}
+.btn-cadastro {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #333;
+    border: 0;
+    color: #fff;
+}
