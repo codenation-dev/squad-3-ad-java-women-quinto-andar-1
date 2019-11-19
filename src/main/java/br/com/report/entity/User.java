@@ -42,9 +42,6 @@ public class User extends DateAudit implements Serializable {
     @Column
     private String token;
 
-    @OneToMany
-    private List<Log> logs;
-
     public User(){
 
     }
@@ -55,28 +52,12 @@ public class User extends DateAudit implements Serializable {
         this.login = login;
     }
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getLogin() {
         return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPassword() {
@@ -89,18 +70,6 @@ public class User extends DateAudit implements Serializable {
 
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public List<Log> getLogs() {
-        return logs;
-    }
-
-    public void setLogs(List<Log> logs) {
-        this.logs = logs;
     }
 
     public String getToken() {
