@@ -1,9 +1,11 @@
 package br.com.report;
 
+import br.com.report.entity.Log;
 import br.com.report.entity.User;
 import br.com.report.payload.LogRequest;
 import br.com.report.payload.LoginRequest;
 import br.com.report.payload.SignUpRequest;
+import br.com.report.repository.LogRepository;
 import br.com.report.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -19,8 +21,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
+import java.util.Optional;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -28,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @PropertySource("classpath:application-test.properties")
+@Transactional
 public class LogControllerTest {
 
     @Autowired
@@ -38,6 +43,9 @@ public class LogControllerTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private LogRepository logRepository;
 
     public static String asJsonString(final Object obj) {
         try {
@@ -54,10 +62,18 @@ public class LogControllerTest {
                         new SignUpRequest(login, email, password)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON));
+        this.mvc.perform( MockMvcRequestBuilders
+                .post("/api/auth/cad")
+                .content(asJsonString(
+                        new SignUpRequest("tequila", "tequila@email.com", "TQ@123")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
     }
 
     private User getUser(Long id) throws Exception {
-        return userRepository.findById(id).get();
+        Optional<User> user = userRepository.findFirstByOrderById();
+        return user.orElse(null);
+
     }
 
 
@@ -80,14 +96,11 @@ public class LogControllerTest {
         return map.get("accessToken");
     }
 
-    private void generaterLog(String usertoken, String accessToken) throws Exception {
-        this.mvc.perform( MockMvcRequestBuilders
-                .post("/api/log")
-                .header("Authorization", "Bearer " + accessToken)
-                .content(asJsonString(
-                        new LogRequest("error","classX.Controller","descrição do erro", "controller", "ativo", "dev", 100, usertoken )))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON));
+    private Log generaterLog(String usertoken, String accessToken) throws Exception {
+        Optional<User> user = userRepository.findByToken(usertoken);
+        Log log = logRepository.save(new Log("error","classX.Controller","descrição do erro",
+                "controller", "ativo", "dev", 100, user.get()));
+        return log;
     }
 
     @Test
@@ -96,11 +109,11 @@ public class LogControllerTest {
         String acessToken = obtainAccessToken("taina","TM@123");
 
         User user = getUser(1L);
-        generaterLog(user.getToken(), acessToken);
+        Log log = generaterLog(user.getToken(), acessToken);
 
         ResultActions result
                 = this.mvc.perform( MockMvcRequestBuilders
-                .get("/api/log/id/1")
+                .get("/api/log/id/"+ log.getId())
                 .header("Authorization", "Bearer " + acessToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -243,20 +256,20 @@ public class LogControllerTest {
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    public void successffindLogByEnvironmentAndSearchByDescription() throws Exception{
-//        generaterUser("taina", "tainajmedeiros@gmail.com", "TM@123");
-//        String acessToken = obtainAccessToken("taina","TM@123");
-//
-//        User user = getUser(1L);
-//        generaterLog(user.getToken(), acessToken);
-//
-//        this.mvc.perform( MockMvcRequestBuilders
-//                .get("/api/log/dev/classX.Controller")
-//                .header("Authorization", "Bearer " + acessToken)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
-//    }
+    @Test
+    public void successffindLogByEnvironmentAndSearchByDescription() throws Exception{
+        generaterUser("taina", "tainajmedeiros@gmail.com", "TM@123");
+        String acessToken = obtainAccessToken("taina","TM@123");
+
+        User user = getUser(1L);
+        generaterLog(user.getToken(), acessToken);
+
+        this.mvc.perform( MockMvcRequestBuilders
+                .get("/api/log/dev/classX.Controller")
+                .header("Authorization", "Bearer " + acessToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
 
 }
