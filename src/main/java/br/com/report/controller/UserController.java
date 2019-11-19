@@ -31,7 +31,7 @@ public class UserController {
             @ApiResponse(code = 404, message = "User not found", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<?> findById(@PathVariable(value = "id") long id) {
         Optional<User> user = userService.findById(id);
         if(user.isPresent())
@@ -46,7 +46,7 @@ public class UserController {
             @ApiResponse(code = 200, message = "Returns the list user", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/user")
+    @GetMapping("/users")
     public List<User> findAll() throws NotFoundException {
         List<User> users = userService.findAll();
         return users;
