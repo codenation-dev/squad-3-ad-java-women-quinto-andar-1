@@ -28,8 +28,10 @@ export class LoginService {
           console.log("userData");
           console.log(userData);
 
-         //sessionStorage.setItem('username',username);
-         let tokenStr= 'Bearer ' + userData.accessToken;
+         sessionStorage.setItem('username', userData.user.login);
+         sessionStorage.setItem('userToken', userData.user.token);
+
+         let tokenStr= 'Bearer ' + userData.jwtAuthenticationResponse.accessToken;
          sessionStorage.setItem('token', tokenStr);
          return userData;
         }
@@ -42,7 +44,9 @@ export class LoginService {
 
   logOut() {
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('userToken');
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('logId');
   }
 
   isLoggedIn(){

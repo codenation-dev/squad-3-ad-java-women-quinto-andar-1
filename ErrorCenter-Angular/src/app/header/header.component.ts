@@ -11,11 +11,13 @@ import { LoginService } from '../services/login.service';
 export class HeaderComponent implements OnInit {
   //Informacoes do usuario e token
   userName;
-  userToken = "jsjsjjsjsjsjsjjsjsjsjs";
+  userToken;
 
   formLogin;
   
-  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) { }
+  constructor(private fb: FormBuilder, private router: Router, 
+    private loginService: LoginService) { 
+    }
 
   ngOnInit() {
     this.formLogin = this.fb.group({
@@ -27,7 +29,9 @@ export class HeaderComponent implements OnInit {
 
   getUsername(){
     console.log("Usuario logado: ");
-   this.userName = sessionStorage.getItem('username')
+   this.userName = sessionStorage.getItem('username');
+   this.userToken = sessionStorage.getItem('userToken');
+
    console.log(this.userName);
    console.log("ROTA:");
    console.log(this.router.url);
