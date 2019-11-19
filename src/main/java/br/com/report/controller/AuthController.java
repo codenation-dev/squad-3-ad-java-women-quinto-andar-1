@@ -77,12 +77,12 @@ public class AuthController {
     @PostMapping("/cad")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByLogin(signUpRequest.getLogin())) {
-            return new ResponseEntity(new Response(false, "Username is already taken!"),
+            return new ResponseEntity<>(new Response(false, "Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity(new Response(false, "Email Address already in use!"),
+            return new ResponseEntity<>(new Response(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
 
