@@ -86,14 +86,15 @@ public class LogControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("tokenType").value("Bearer"))
-                .andExpect(MockMvcResultMatchers.jsonPath("accessToken").exists());
+                .andExpect(MockMvcResultMatchers.jsonPath("jwtAuthenticationResponse.tokenType").value("Bearer"))
+                .andExpect(MockMvcResultMatchers.jsonPath("jwtAuthenticationResponse.accessToken").exists());
 
         String resultString = result.andReturn().getResponse().getContentAsString();
 
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, String> map = mapper.readValue(resultString, Map.class);
-        return map.get("accessToken");
+        Map<String, Map> map = mapper.readValue(resultString, Map.class);
+        return map.get("jwtAuthenticationResponse").get("accessToken").toString();
+
     }
 
     private Log generaterLog(String usertoken, String accessToken) throws Exception {
