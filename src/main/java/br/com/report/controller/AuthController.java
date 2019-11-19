@@ -42,6 +42,12 @@ public class AuthController {
     JwtTokenProvider tokenProvider;
 
     @ApiOperation(value = "Authenticate user access in api")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the user who has been logged in and JWT", response = Response.class),
+            @ApiResponse(code = 400, message = "Bad request", response = Response.class),
+            @ApiResponse(code = 401, message = "ou do not have permission to access this feature.", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         System.out.println(loginRequest.getLogin() + " " + loginRequest.getPassword());
@@ -60,9 +66,10 @@ public class AuthController {
 
     @ApiOperation(value = "Add a new user in database")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Retorna a lista de pessoa", response = Response.class),
-            @ApiResponse(code = 401, message = "Você não tem permissão para acessar este recurso", response = Response.class),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção", response = Response.class),
+            @ApiResponse(code = 201, message = "Returns the registered user", response = Response.class),
+            @ApiResponse(code = 400, message = "Bad request", response = Response.class),
+            @ApiResponse(code = 401, message = "ou do not have permission to access this feature.", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
     @PostMapping("/cad")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
