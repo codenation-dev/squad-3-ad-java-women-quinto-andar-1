@@ -16,6 +16,7 @@ export class ErrorViewComponent implements OnInit {
   public status;
   public titulo;
   public level;
+  public eventos;
   public details;
   public token;
   public id = sessionStorage.getItem('logId');
@@ -42,6 +43,7 @@ export class ErrorViewComponent implements OnInit {
     this.data = data.dataLogged;
    // this.hora = data.hora;
     this.level = data.level;
+    this.eventos = data.event;
     this.details = data.details;
     this.status = data.status;
     this.titulo = data.description;
