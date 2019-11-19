@@ -36,9 +36,6 @@ public class User extends DateAudit implements Serializable {
     @Email
     private String email;
 
-    @Column(nullable = false)
-    private Boolean active = true;
-
     @Column
     private String token;
 
