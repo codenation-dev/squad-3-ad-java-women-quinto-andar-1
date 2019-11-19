@@ -7,6 +7,8 @@ import br.com.report.payload.LogRequest;
 import br.com.report.payload.Response;
 import io.swagger.annotations.ApiOperation;
 import br.com.report.service.impl.LogService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,12 @@ public class LogController {
     private UserController userController;
 
     @ApiOperation(value = "Add a new log")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Returns the registered log", response = Response.class),
+            @ApiResponse(code = 401, message = "You do not have permission to access this feature.", response = Response.class),
+            @ApiResponse(code = 400, message = "Bad request", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @PostMapping("/log")
     public ResponseEntity<Log> addLog(@RequestBody LogRequest logRequest){
         try{
@@ -40,36 +48,58 @@ public class LogController {
     }
 
     @ApiOperation(value = "Finds a log by its id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the log", response = Response.class),
+            @ApiResponse(code = 401, message = "You do not have permission to access this feature.", response = Response.class),
+            @ApiResponse(code = 404, message = "Log not found", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/log/id/{id}")
-    public ResponseEntity<?> findById(@PathVariable(value = "id") long id) throws NotFoundException {
+    public ResponseEntity<?> findById(@PathVariable(value = "id") long id) {
         Optional<Log> log = logService.findById(id);
         if (log.isPresent())
             return new ResponseEntity<Log>(log.get(), HttpStatus.OK);
 
-        return new ResponseEntity(
+        return new ResponseEntity<>(
                 new Response(false, "Not found log with id: " + id),
                 HttpStatus.NOT_FOUND);
     }
 
     @ApiOperation(value = "Modify log delete / filed status")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Return the log who was modified", response = Response.class),
+            @ApiResponse(code = 401, message = "You do not have permission to access this feature.", response = Response.class),
+            @ApiResponse(code = 404, message = "Log not found", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @PutMapping("/log/status/{id}")
-    public void changeStatus(@RequestBody Log log, @PathVariable("id") Long id) throws NotFoundException {
+    public ResponseEntity<?> changeStatus(@RequestBody Log log, @PathVariable("id") Long id) {
         Optional<Log> findLog = logService.findById(id);
-        findLog.orElseThrow(()-> new NotFoundException("Not found user with id: " + id));
+        if(findLog.isPresent())
+            return new ResponseEntity<Log>(findLog.get(), HttpStatus.OK);
         logService.changeStatus(log);
+        return new ResponseEntity<>(
+                new Response(false, "Not found log with id: " + id),
+                HttpStatus.NOT_FOUND);
     }
 
     @ApiOperation(value = "Return a list with all the logs")
+
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/log")
     public List<Log> findAll() throws NotFoundException {
         List<Log> logs = logService.findAll();
-        if(logs.isEmpty()){
-            throw new NotFoundException("The list is empty");
-        }
         return logs;
     }
 
     @ApiOperation(value = "Lists logs in chosen environment")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/log/{environment}")
     public List<Log> findLogByEnvironment(@PathVariable(value = "environment") String environment)
             throws NotFoundException {
@@ -81,58 +111,63 @@ public class LogController {
     }
 
     @ApiOperation(value = "Return logs by environment and ordered by level")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/log/envOrdLev/{environment}")
     public List<Log> findLogByEnvironmentAndOrderByLevel(@PathVariable(value = "environment") String environment)
             throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndOrderByLevel(environment);
-        if(logs.isEmpty()){
-            throw new NotFoundException("The list is empty");
-        }
         return logs;
     }
 
     @ApiOperation(value = "Return logs by environment and ordered by event")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/log/envOrdEve/{environment}")
     public List<Log> findLogByEnvironmentAndOrderByEvent(@PathVariable(value = "environment") String environment)
             throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndOrderByEvent(environment);
-        if(logs.isEmpty()){
-            throw new NotFoundException("The list is empty");
-        }
         return logs;
     }
 
     @ApiOperation(value = "Return logs by environment and with inserted search term")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/log/{environment}/{searchBy}")
     public List<Log> findLogByEnvironmentAndSearchBy(@PathVariable(value = "environment")String environment,
                                                      @PathVariable(value = "searchBy")String searchBy)
             throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndSearchBy(environment, searchBy);
-        if(logs.isEmpty()){
-            throw new NotFoundException("The list is empty");
-        }
         return logs;
     }
 
     @ApiOperation(value = "Return logs by environment, with inserted search term and ordered by chosen parameter")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/log/envOrdLev/{environment}/{searchBy}")
     public List<Log> findLogByEnvironmentAndSearchByAndOrderByLevel(@PathVariable(value = "environment") String environment,
                                                                     @PathVariable(value="searchBy") String searchBy) throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndSearchByAndOrderByLevel(environment, searchBy);
-        if(logs.isEmpty()){
-            throw new NotFoundException("The list is empty");
-        }
         return logs;
     }
 
     @ApiOperation(value = "Return logs by environment, with inserted search term and ordered by chosen parameter")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/log/envOrdEve/{environment}/{searchBy}")
     public List<Log> findLogByEnvironmentAndSearchByAndOrderByEvent(@PathVariable(value = "environment") String environment,
                                                                     @PathVariable(value="searchBy") String searchBy) throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndSearchByAndOrderByEvent(environment, searchBy);
-        if(logs.isEmpty()){
-            throw new NotFoundException("The list is empty");
-        }
         return logs;
     }
 }
