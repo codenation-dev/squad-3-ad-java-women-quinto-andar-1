@@ -1,11 +1,16 @@
 package br.com.report.controller;
 
 import br.com.report.entity.User;
+import br.com.report.payload.Response;
 import br.com.report.service.impl.UserService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,29 +25,51 @@ public class UserController {
 
 
     @ApiOperation(value = "Finds a user by its id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the user", response = Response.class),
+            @ApiResponse(code = 401, message = "You do not have permission to access this feature.", response = Response.class),
+            @ApiResponse(code = 404, message = "User not found", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/user/{id}")
-    public Optional<User> findById(@PathVariable(value = "id") long id) throws NotFoundException {
+    public ResponseEntity<?> findById(@PathVariable(value = "id") long id) {
         Optional<User> user = userService.findById(id);
-        user.orElseThrow(()-> new NotFoundException("Not found user with id: " + id));
-        return user;
+        if(user.isPresent())
+            return new ResponseEntity<User>(user.get(), HttpStatus.OK);
+        return new ResponseEntity<>(
+                new Response(false, "Not found user with id: " + id),
+                HttpStatus.NOT_FOUND);
     }
 
     @ApiOperation(value = "Return a list with all the users")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Returns the list user", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @GetMapping("/user")
     public List<User> findAll() throws NotFoundException {
         List<User> users = userService.findAll();
-        if(users.isEmpty())
-            throw new NotFoundException("No users!");
         return users;
     }
 
     @ApiOperation(value = "Modify user on / off status")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Return the user who was modified", response = Response.class),
+            @ApiResponse(code = 401, message = "You do not have permission to access this feature.", response = Response.class),
+            @ApiResponse(code = 404, message = "User not found", response = Response.class),
+            @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
+    })
     @PutMapping("/user/{id}")
-    public void changeStatus(@RequestBody User user, @PathVariable("id") Long id) throws NotFoundException {
+    public ResponseEntity<?> changeStatus(@RequestBody User user, @PathVariable("id") Long id) throws NotFoundException {
         Optional<User> findUser = userService.findById(id);
-        findUser.orElseThrow(()-> new NotFoundException("Not found user with id: " + id));
+        if(findUser.isPresent())
+            return new ResponseEntity<User>(findUser.get(), HttpStatus.OK);
         userService.changeStatus(user);
+        return new ResponseEntity<>(
+                new Response(false, "Not found user with id: " + id),
+                HttpStatus.NOT_FOUND);
     }
+
 
     public User findByToken(String token) throws NotFoundException {
         Optional<User> user = userService.findByToken(token);
