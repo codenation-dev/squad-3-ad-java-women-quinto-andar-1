@@ -84,7 +84,7 @@ ELEMENT_DATA;
 
   fillTable(res){
     this.ELEMENT_DATA = res;
-    this.dataSource = new MatTableDataSource<UserData>(this.ELEMENT_DATA);
+    this.dataSource = new MatTableDataSource<UserData>(res);
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -93,6 +93,13 @@ ELEMENT_DATA;
   expandLog(id){
     sessionStorage.setItem('logId', id);
     this.router.navigate(['/logview']);
+  }
+
+  getColor(level: string){
+    if(level == "error") return "red";
+    if(level == "warning") return "orange";
+    if(level == "debug") return "blue";
+
   }
 
   gotoCadastroClientes() {

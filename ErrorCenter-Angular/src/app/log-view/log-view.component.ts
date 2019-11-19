@@ -47,4 +47,11 @@ export class ErrorViewComponent implements OnInit {
     this.titulo = data.description;
     this.token = data.user.token;
   }
+
+  getColor(level: string){
+    if(level == "error") return "red";
+    if(level == "warning") return "orange";
+    if(level == "debug") return "blue";
+
+  }
 }
