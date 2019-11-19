@@ -35,7 +35,7 @@ public class LogController {
             @ApiResponse(code = 400, message = "Bad request", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @PostMapping("/log")
+    @PostMapping("/logs")
     public ResponseEntity<Log> addLog(@RequestBody LogRequest logRequest){
         try{
             User user = userController.findByToken(logRequest.getUserToken());
@@ -54,7 +54,7 @@ public class LogController {
             @ApiResponse(code = 404, message = "Log not found", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/log/id/{id}")
+    @GetMapping("/logs/id/{id}")
     public ResponseEntity<?> findById(@PathVariable(value = "id") long id) {
         Optional<Log> log = logService.findById(id);
         if (log.isPresent())
@@ -72,7 +72,7 @@ public class LogController {
             @ApiResponse(code = 404, message = "Log not found", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @PutMapping("/log/status/{id}")
+    @PutMapping("/logs/status/{id}")
     public ResponseEntity<?> changeStatus(@RequestBody Log log, @PathVariable("id") Long id) {
         Optional<Log> findLog = logService.findById(id);
         if(findLog.isPresent())
@@ -89,7 +89,7 @@ public class LogController {
             @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/log")
+    @GetMapping("/logs")
     public List<Log> findAll() throws NotFoundException {
         List<Log> logs = logService.findAll();
         return logs;
@@ -100,7 +100,7 @@ public class LogController {
             @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/log/{environment}")
+    @GetMapping("/logs/{environment}")
     public List<Log> findLogByEnvironment(@PathVariable(value = "environment") String environment)
             throws NotFoundException {
         List<Log> logs = logService.findLogByEnvironment(environment);
@@ -112,7 +112,7 @@ public class LogController {
             @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/log/envOrdLev/{environment}")
+    @GetMapping("/logs/envOrdLev/{environment}")
     public List<Log> findLogByEnvironmentAndOrderByLevel(@PathVariable(value = "environment") String environment)
             throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndOrderByLevel(environment);
@@ -124,7 +124,7 @@ public class LogController {
             @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/log/envOrdEve/{environment}")
+    @GetMapping("/logs/envOrdEve/{environment}")
     public List<Log> findLogByEnvironmentAndOrderByEvent(@PathVariable(value = "environment") String environment)
             throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndOrderByEvent(environment);
@@ -136,7 +136,7 @@ public class LogController {
             @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/log/{environment}/{searchBy}")
+    @GetMapping("/logs/{environment}/{searchBy}")
     public List<Log> findLogByEnvironmentAndSearchBy(@PathVariable(value = "environment")String environment,
                                                      @PathVariable(value = "searchBy")String searchBy)
             throws NotFoundException{
@@ -149,7 +149,7 @@ public class LogController {
             @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/log/envOrdLev/{environment}/{searchBy}")
+    @GetMapping("/logs/envOrdLev/{environment}/{searchBy}")
     public List<Log> findLogByEnvironmentAndSearchByAndOrderByLevel(@PathVariable(value = "environment") String environment,
                                                                     @PathVariable(value="searchBy") String searchBy) throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndSearchByAndOrderByLevel(environment, searchBy);
@@ -161,7 +161,7 @@ public class LogController {
             @ApiResponse(code = 200, message = "Returns the list log", response = Response.class),
             @ApiResponse(code = 500, message = "An exception was thrown", response = Response.class),
     })
-    @GetMapping("/log/envOrdEve/{environment}/{searchBy}")
+    @GetMapping("/logs/envOrdEve/{environment}/{searchBy}")
     public List<Log> findLogByEnvironmentAndSearchByAndOrderByEvent(@PathVariable(value = "environment") String environment,
                                                                     @PathVariable(value="searchBy") String searchBy) throws NotFoundException{
         List<Log> logs = logService.findLogByEnvironmentAndSearchByAndOrderByEvent(environment, searchBy);
