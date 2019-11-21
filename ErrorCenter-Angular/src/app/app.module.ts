@@ -4,7 +4,7 @@ import { AuthService } from './../auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {  MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import {MatTableModule} from '@angular/material/table';
@@ -60,7 +60,8 @@ import { MatIconModule, MatCardModule } from '@angular/material';
     HttpClientModule,
     MatSnackBarModule,
     MatIconModule,
-    MatCardModule    
+    MatCardModule,
+    FormsModule
   ],
   providers: [AuthGuard, AuthService],
   entryComponents: [ModalNotRegisteredComponent,SuccessfulRegisterComponent],

@@ -37,19 +37,19 @@
         </mat-select>
       </mat-form-field>
     </div>
+    
+    <div class="col-sm-12 col-md-2">
+      <!-- Filter -->
+      <mat-form-field>
+        <input matInput [(ngModel)]="searchBy" placeholder="Filtro">
+      </mat-form-field>
 
-    <div class="col-md">
+    </div>
+
+    <div class="col-md-2">
       <button mat-button style="color: white; background-color: #5990f7;" (click)="ngOnInit()">
         <mat-icon>search</mat-icon>
       </button> 
-    </div>
-    
-    <div class="col-sm-12 col-md-3">
-      <!-- Filter -->
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
-      </mat-form-field>
-
     </div>
   </div>
 
