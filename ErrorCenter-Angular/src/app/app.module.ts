@@ -27,7 +27,6 @@ import { SuccessfulRegisterComponent } from './successful-register/successful-re
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ModalNotRegisteredComponent } from './modal-not-registered/modal-not-registered.component';
 import { ErrorViewComponent } from './log-view/log-view.component';
-import { LogListingComponent } from './log-listing/log-listing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule, MatCardModule } from '@angular/material';
 
@@ -43,8 +42,7 @@ import { MatIconModule, MatCardModule } from '@angular/material';
     SuccessfulRegisterComponent,
     AccessDeniedComponent,
     ModalNotRegisteredComponent,
-    ErrorViewComponent,
-    LogListingComponent
+    ErrorViewComponent
   ],
   imports: [
     BrowserModule,
