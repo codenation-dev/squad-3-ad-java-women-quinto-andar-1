@@ -1,3 +1,4 @@
+<!-- 
 <div class="row wrapper-header" style="display: flex;
 align-items: center ">
   <div class="col-sm-12 col-md-1">
@@ -26,4 +27,31 @@ align-items: center ">
   <div class="col-sm col-md-1">
     <mat-icon style="font-size: 30px;">account_circle</mat-icon>
   </div>
+</div> -->
+
+<div class="topnav" id="myTopnav">
+  <a class="active"><img src="assets/images/5andar.png" style="width: 55px;"></a>
+
+  <a *ngIf="loginService.isLoggedIn()" style="margin-top: auto;
+    margin-bottom: auto">Bem Vindo(a) {{userName}}. Seu token é: {{userToken}}</a>
+
+  <a style="float: right;">
+    <mat-icon>account_circle</mat-icon>
+  </a>
+
+  <a *ngIf="loginService.isLoggedIn()" class="pointer" style="float: right;" (click)="logout()" routerLink>
+    Sair
+  </a>
+
+  <a *ngIf="!loginService.isLoggedIn()" class="pointer" style="float: right;" routerLink="/signup">
+    Cadastrar
+  </a>
+
+  <a *ngIf="!loginService.isLoggedIn()" class="pointer" style="float: right;" routerLink="/login">
+    Login
+  </a>
+
+  <a href="javascript:void(0);" class="icon" (click)="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>

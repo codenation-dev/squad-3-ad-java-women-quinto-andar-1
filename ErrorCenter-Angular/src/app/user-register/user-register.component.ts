@@ -21,12 +21,12 @@ export class UserRegisterComponent implements OnInit {
   conversao;
   durationInSeconds = 5;
 
-  constructor(private fb: FormBuilder, 
-              public dialog: MatDialog, 
-              private router: Router, 
-              private userService: UserService,
-              private loginService: LoginService,
-              private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder,
+    public dialog: MatDialog,
+    private router: Router,
+    private userService: UserService,
+    private loginService: LoginService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     //localStorage.clear();
@@ -43,10 +43,10 @@ export class UserRegisterComponent implements OnInit {
         this.valoresForm = res;
       });
 
-      this.isUserLoggedIn();
-      //this.userService.getUsers().subscribe(users => {
-      //  console.log(users);
-      //});
+    this.isUserLoggedIn();
+    //this.userService.getUsers().subscribe(users => {
+    //  console.log(users);
+    //});
   }
 
   isUserLoggedIn(){
@@ -63,14 +63,14 @@ export class UserRegisterComponent implements OnInit {
     console.log(this.conversao);
     //localStorage.setItem('cadastro', this.conversao);
 
-   // let userInfo = {
-   //   email: this.formCadastro.value.email,
-   //   login: this.formCadastro.value.login,
-   //   password: this.formCadastro.value.password,
-      //creationDate: "2019-12-10", 
-      //lastActivity: "2019-12-10"
-   // }
-   // console.log(userInfo);
+    // let userInfo = {
+    //   email: this.formCadastro.value.email,
+    //   login: this.formCadastro.value.login,
+    //   password: this.formCadastro.value.password,
+    //creationDate: "2019-12-10", 
+    //lastActivity: "2019-12-10"
+    // }
+    // console.log(userInfo);
 
     let user = new User();
     user.email = this.formCadastro.value.email;
@@ -90,9 +90,11 @@ export class UserRegisterComponent implements OnInit {
       this.router.navigate(['/login']);
       this.openSnackBar();
     },
-    Error => {
-      console.log(Error);
-    }
+      Error => {
+        console.log(Error);
+        alert("Erro ao cadastrar!");
+
+      }
     );
   }
 
@@ -104,13 +106,13 @@ export class UserRegisterComponent implements OnInit {
 
   verificaCadastro() {
     //setTimeout(() => {
-      //console.log(localStorage.getItem('cadastro'));
-      //if (localStorage.getItem('cadastro')) {
-        // TODO REDIRECIIONAR PARA PAGINA DE CADASTRO CONCLUIDO
-        this.router.navigate(['/succesful-register']);
-      //} else {
-      //  return false;
-      //}
+    //console.log(localStorage.getItem('cadastro'));
+    //if (localStorage.getItem('cadastro')) {
+    // TODO REDIRECIIONAR PARA PAGINA DE CADASTRO CONCLUIDO
+    this.router.navigate(['/succesful-register']);
+    //} else {
+    //  return false;
+    //}
     //}, 200);
   }
 

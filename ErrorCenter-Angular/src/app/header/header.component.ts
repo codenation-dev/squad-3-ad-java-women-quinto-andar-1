@@ -39,4 +39,14 @@ export class HeaderComponent implements OnInit {
     this.loginService.logOut();
     this.router.navigate(['/login']);
   }
+
+  myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  } 
+
 }
