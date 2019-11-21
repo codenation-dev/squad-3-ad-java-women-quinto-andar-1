@@ -38,7 +38,7 @@ public interface LogRepository extends JpaRepository<Log, Long> {
             "WHERE environment =:environment " +
             "AND (level =:searchBy " +
             "OR origin =:searchBy " +
-            "OR description like %:searchBy% );", nativeQuery = true)
+            "OR description like '%'||:searchBy||'%' );", nativeQuery = true)
     List<Log> findLogByEnvironmentAndSearchBy(@Param("environment") String environment,@Param("searchBy") String searchBy);
 
     @Query(value = "SELECT * " +
@@ -46,7 +46,7 @@ public interface LogRepository extends JpaRepository<Log, Long> {
             "WHERE environment = :environment " +
             "AND (level = :searchBy " +
             "OR origin = :searchBy " +
-            "OR description like %:searchBy% ) " +
+            "OR description like '%'||:searchBy||'%' ) " +
             "ORDER BY level ;", nativeQuery = true)
     List<Log> findLogByEnvironmentAndSearchByAndOrderByLevel(@Param("environment")String environment, @Param("searchBy")String searchBy);
 
@@ -55,7 +55,7 @@ public interface LogRepository extends JpaRepository<Log, Long> {
             "WHERE environment = :environment " +
             "AND (level = :searchBy " +
             "OR origin = :searchBy " +
-            "OR description like %:searchBy% ) " +
+            "OR description like '%'||:searchBy||'%' ) " +
             "ORDER BY event ;", nativeQuery = true)
     List<Log> findLogByEnvironmentAndSearchByAndOrderByEvent(@Param("environment")String environment, @Param("searchBy")String searchBy);
 }
