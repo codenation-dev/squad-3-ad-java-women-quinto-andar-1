@@ -38,7 +38,7 @@ export class ContentComponent implements OnInit {
   searchBy = "";
 
   // ----- Tabela -----
-  displayedColumns: string[] = [/*'select',*/ 'id', 'level', 'log', 'evento', 'visualize', 'archive', 'delete'];
+  displayedColumns: string[] = [/*'select', 'id', */'level', 'log', 'evento', 'visualize', 'archive', 'delete'];
   dataSource: MatTableDataSource<UserData> = new MatTableDataSource<UserData>();;
   selection = new SelectionModel<UserData>(true, []);
 
