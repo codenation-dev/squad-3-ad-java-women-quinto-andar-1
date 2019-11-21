@@ -24,17 +24,11 @@ export class HeaderComponent implements OnInit {
       email: []
     });
     this.getUsername();
-    console.log("INITI");
   }
 
   getUsername(){
-    console.log("Usuario logado: ");
    this.userName = sessionStorage.getItem('username');
    this.userToken = sessionStorage.getItem('userToken');
-
-   console.log(this.userName);
-   console.log("ROTA:");
-   console.log(this.router.url);
   }
 
   gotoCadastroClientes() {

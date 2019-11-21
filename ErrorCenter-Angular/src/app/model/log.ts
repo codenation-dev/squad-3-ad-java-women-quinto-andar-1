@@ -6,5 +6,4 @@ export class Log{
   public dataLogged: string;
   public status: string;
   public environment: string;
-  //public tokenCollected: User;
 }

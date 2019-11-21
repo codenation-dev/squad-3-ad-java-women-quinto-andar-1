@@ -26,22 +26,13 @@ export class ErrorViewComponent implements OnInit {
   ngOnInit() {
     this.logService.getLogById(this.id)
     .subscribe(data => {
-    console.log(data);
     this.getItems(data);
-    //this.ip = ip;  // trocar depois
-    //this.data = data.data;
-    //this.hora = data.hora;
-    //this.status = data.status;
-    //this.titulo = data.titulo;
-    //this.token = data.token;
     });
   }
 
   getItems(data){
-    console.log(data);
-    this.ip = data.origin;  // trocar depois
+    this.ip = data.origin;
     this.data = data.dataLogged;
-   // this.hora = data.hora;
     this.level = data.level;
     this.eventos = data.event;
     this.details = data.details;

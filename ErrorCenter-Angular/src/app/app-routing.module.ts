@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: 'signup', component: UserRegisterComponent },
   { path: 'home', component: ContentComponent, canActivate: [AuthGuard] },
   { path: 'logview', component: ErrorViewComponent, canActivate: [AuthGuard] },
-  //{ path: 'log-listing', component: LogListingComponent},
   { path: 'access-denied', component: AccessDeniedComponent },
   { path: 'login', component: LoginComponent },
 ];

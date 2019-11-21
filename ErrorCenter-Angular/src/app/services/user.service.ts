@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { VariableEnvironmentService } from './variable-environment.service';
-//import { Log } from "../Log";
 
 @Injectable({
   providedIn: 'root'

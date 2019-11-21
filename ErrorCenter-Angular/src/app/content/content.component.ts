@@ -62,7 +62,6 @@ export class ContentComponent implements OnInit {
         this.logService.findLogByEnvironmentAndSearchByAndOrderByEvent(this.selectedEnvironment, this.selectedSearchBy)
         .subscribe(
           response=>{
-            console.log(response);
             let res = response;
             this.fillTable(res);
           }
@@ -73,7 +72,6 @@ export class ContentComponent implements OnInit {
         this.logService.findLogByEnvironmentAndSearchByAndOrderByLevel(this.selectedEnvironment, this.selectedSearchBy)
         .subscribe(
           response=>{
-            console.log(response);
             let res = response;
             this.fillTable(res);
           }
@@ -86,7 +84,6 @@ export class ContentComponent implements OnInit {
         this.logService.findLogByEnvironmentAndSearchBy(this.selectedEnvironment, this.selectedSearchBy)
         .subscribe(
           response=>{
-            console.log(response);
             let res = response;
             this.fillTable(res);
           }
@@ -99,7 +96,6 @@ export class ContentComponent implements OnInit {
         this.logService.findLogByEnvironmentAndOrderByEvent(this.selectedEnvironment, this.selectedOrderBy)
         .subscribe(
           response=>{
-            console.log(response);
             let res = response;
             this.fillTable(res);
           }
@@ -111,7 +107,6 @@ export class ContentComponent implements OnInit {
         this.logService.findLogByEnvironmentAndOrderByLevel(this.selectedEnvironment, this.selectedOrderBy)
         .subscribe(
           response=>{
-            console.log(response);
             let res = response;
             this.fillTable(res);
           }
@@ -123,7 +118,6 @@ export class ContentComponent implements OnInit {
     this.logService.findLogByEnvironment(this.selectedEnvironment)
     .subscribe(
       response=>{
-        console.log(response);
         let res = response;
         this.fillTable(res);
       }
@@ -158,10 +152,7 @@ export class ContentComponent implements OnInit {
   }
 
   changeLogStatus(logById, status){
-    console.log(logById.status);
     logById.status = status;
-    console.log(logById.status);
-    console.log(logById);
 
     this.logService.changeStatus(logById.id, logById).subscribe();
     this.ngOnInit();

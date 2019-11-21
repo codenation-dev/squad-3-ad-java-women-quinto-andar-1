@@ -1,44 +1,26 @@
-<!--
-<form [formGroup]="formLogin">
-  <div class="form-row align-items-center">
-    <div class="col-auto my-1">
-      <div class="form-check">
-        <label class="form-check-label">
-          <b>Acesse</b> sua conta
-        </label>
-        <input type="text" class="form-control" formControlName="cpf" placeholder="Digite seu CPF"
-          (keypress)="onlynumber($event)" maxlength=11>
-      </div>
-    </div>
-    <div class="col-auto my-1">
-      <button type="submit" class="btn btn-primary acessar-conta" (click)="login()">Acessar</button>
-    </div>
-  </div>
-</form>
--->
 <app-header></app-header>
 
 <div class="container mt-5 login-box">
 
-    <mat-card class="mat-elevation-z8">
-  <div class="row box-cadastro">
-    <div class="col-12">
-      <h3 class="text-center">Login</h3>
-      <span *ngIf="isFailedLogin" style="color: red">Usuário ou senha incorretos.</span>
-      <form class="mt-5" [formGroup]="formLogin">
-        <!--<div class="form-group">
-          <input type="email" class="form-control login" placeholder="E-mail" formControlName="email">
-        </div>-->
-        <div class="form-group">
-          <input type="text" class="form-control login" placeholder="Login ou Email" formControlName="login">
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control login" placeholder="Senha" formControlName="password">
-        </div>
-        <button type="submit" class="btn btn-primary acessar-conta" style="float: right;" (click)="login()">Login</button>
-        <button type="submit" class="btn btn-link esqueci-senha" style="float: right;" (click)="rePassword()">Esqueci a senha</button>
-      </form>
+  <mat-card class="mat-elevation-z8">
+    <div class="row box-cadastro">
+      <div class="col-12">
+        <h3 class="text-center">Login</h3>
+        <span *ngIf="isFailedLogin" style="color: red">Usuário ou senha incorretos.</span>
+        <form class="mt-5" [formGroup]="formLogin">
+
+          <div class="form-group">
+            <input type="text" class="form-control login" placeholder="Login ou Email" formControlName="login">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control login" placeholder="Senha" formControlName="password">
+          </div>
+          <button type="submit" class="btn btn-primary acessar-conta" style="float: right;"
+            (click)="login()">Login</button>
+          <button type="submit" class="btn btn-link esqueci-senha" style="float: right;" (click)="rePassword()">Esqueci
+            a senha</button>
+        </form>
+      </div>
     </div>
-  </div>
-</mat-card>
+  </mat-card>
 </div>

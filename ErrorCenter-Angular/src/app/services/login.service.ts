@@ -25,9 +25,6 @@ export class LoginService {
     return this.http.post<any>( this.url + '/api/auth/login', body).pipe(
       map(
         userData => {
-          console.log("userData");
-          console.log(userData);
-
          sessionStorage.setItem('username', userData.user.login);
          sessionStorage.setItem('userToken', userData.user.token);
 
@@ -36,10 +33,7 @@ export class LoginService {
          return userData;
         }
       )
- 
-     );
-     
-    //return this.http.post<any>(this.url + '/api/auth/login', body);
+    );
   }
 
   logOut() {

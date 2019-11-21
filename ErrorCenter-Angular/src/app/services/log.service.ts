@@ -15,7 +15,6 @@ const httpOptions = {
 export class LogService {
 
   private logUrl = this.variableEnvironment.url;
-	//private logUrl = '/api';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,13 +29,8 @@ export class LogService {
 
   /**GET logs */
   getLogs(){
-    console.log("GET DOS LOGS");
     return this.http.get(this.logUrl + "/api/logs", this.header);
   }
-
-  // addLog(Log){
-  //   return this.http.post(this.logUrl + "logs", Log);
-  // }
 
   /**Get log by Id */
   getLogById(id){
@@ -70,5 +64,5 @@ export class LogService {
   findLogByEnvironmentAndSearchBy(environment: String, searchBy: String){
     return this.http.get(this.logUrl + "/api/logs/" + environment + "/" + searchBy, this.header);
   }
-  
+
 }
