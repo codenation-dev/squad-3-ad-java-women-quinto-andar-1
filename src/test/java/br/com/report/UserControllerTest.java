@@ -151,4 +151,13 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized());
     }
+
+    @Test
+    public void successFindByLoginOrEmail() throws Exception {
+        generaterUser();
+        String token = obtainAccessToken("taina","TM@123");
+        Optional<User> user = userRepository.findByLoginOrEmail("taina","taina");
+        assertEquals("taina",user.get().getLogin());
+
+    }
 }
