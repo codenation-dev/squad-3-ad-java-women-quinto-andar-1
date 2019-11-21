@@ -104,6 +104,24 @@ public class LogControllerTest {
         return log;
     }
 
+
+    @Test
+    public void successAddLogTest() throws Exception{
+        generaterUser("taina", "tainajmedeiros@gmail.com", "TM@123");
+        String acessToken = obtainAccessToken("taina","TM@123");
+        User user = getUser(1L);
+        Log log = generaterLog(user.getToken(), acessToken);
+
+        this.mvc.perform( MockMvcRequestBuilders
+                .post("/api/logs")
+                .header("Authorization", "Bearer " + acessToken)
+                .content(asJsonString(
+                        new LogRequest("error","classX.Controller","descrição do erro",
+                                "controller", "ativo", "dev", 100, user.getToken())))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated());
+    }
     @Test
     public void successFindByIdLogTest() throws Exception {
         generaterUser("taina", "tainajmedeiros@gmail.com", "TM@123");
