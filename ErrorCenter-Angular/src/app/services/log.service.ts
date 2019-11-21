@@ -45,18 +45,30 @@ export class LogService {
 
   changeStatus(id, body) {
     return this.http.put(this.logUrl + "/api/logs/status/"+ id, body, this.header);
-  // talvez tenha que mudar esse metodo. Pelo que vi o changeStatus dá um save. Será que não conflita com um log já existente?
   }
 
+  findLogByEnvironment(environment: String){
+    return this.http.get(this.logUrl + "/api/logs/" + environment, this.header);
+  }
 
+  findLogByEnvironmentAndOrderByLevel(environment: String, orderBy: String){
+    return this.http.get(this.logUrl + "/api/logs/envOrdLev/" + environment, this.header);
+  }
 
-  findLogByEnvironmentAndOrderBy(environment: String, orderBy: String){
-    return this.http.get<Log[]>(this.logUrl + "/api/{environment}/{orderBy}")}
+  findLogByEnvironmentAndOrderByEvent(environment: String, orderBy: String){
+    return this.http.get(this.logUrl + "/api/logs/envOrdEve/" + environment, this.header);
+  }
+
+  findLogByEnvironmentAndSearchByAndOrderByLevel(environment: String, searchBy: String){
+    return this.http.get(this.logUrl + "/api/logs/envOrdLev/" + environment + "/" + searchBy, this.header);
+  }
+
+  findLogByEnvironmentAndSearchByAndOrderByEvent(environment: String, searchBy: String){
+    return this.http.get(this.logUrl + "/api/logs/envOrdEve/" + environment + "/" + searchBy, this.header);
+  }
 
   findLogByEnvironmentAndSearchBy(environment: String, searchBy: String){
-    return this.http.get<Log[]>(this.logUrl + "/api/{environment}/{orderBy}")}
-
-  findLogByEnvironmentAndOrderByAndSearchBy(environment: String, orderBy: String, searchBy: String){
-    return this.http.get<Log[]>(this.logUrl + "/api/{environment}/{orderBy}/{searchBy}")}
-
+    return this.http.get(this.logUrl + "/api/logs/" + environment + "/" + searchBy, this.header);
+  }
+  
 }

@@ -32,7 +32,9 @@ const ARCHIVED: string = 'arquivado';
 })
 export class ContentComponent implements OnInit {
   // ----- Select Forms -----
-  selectedAmb = 'producao';
+  selectedEnvironment = 'producao';
+  selectedSearchBy;
+  selectedOrderBy;
 
   // ----- Tabela -----
   displayedColumns: string[] = [/*'select',*/ 'id', 'level', 'log', 'evento', 'visualize', 'archive', 'delete'];
@@ -51,7 +53,82 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.search();
+  }
+
+  search(){
+    if(this.selectedOrderBy != null && this.selectedSearchBy != null){
+      if(this.selectedOrderBy == 'evento'){
+        this.logService.findLogByEnvironmentAndSearchByAndOrderByEvent(this.selectedEnvironment, this.selectedSearchBy)
+        .subscribe(
+          response=>{
+            console.log(response);
+            let res = response;
+            this.fillTable(res);
+          }
+        );
+        return;
+      }
+      if(this.selectedOrderBy == 'level'){
+        this.logService.findLogByEnvironmentAndSearchByAndOrderByLevel(this.selectedEnvironment, this.selectedSearchBy)
+        .subscribe(
+          response=>{
+            console.log(response);
+            let res = response;
+            this.fillTable(res);
+          }
+        );
+        return;
+      }
+    }
+
+    if(this.selectedOrderBy == null && this.selectedSearchBy != null){
+        this.logService.findLogByEnvironmentAndSearchBy(this.selectedEnvironment, this.selectedSearchBy)
+        .subscribe(
+          response=>{
+            console.log(response);
+            let res = response;
+            this.fillTable(res);
+          }
+        );
+        return;
+    }
+
+    if(this.selectedOrderBy != null && this.selectedSearchBy == null){
+      if(this.selectedOrderBy == 'evento'){
+        this.logService.findLogByEnvironmentAndOrderByEvent(this.selectedEnvironment, this.selectedOrderBy)
+        .subscribe(
+          response=>{
+            console.log(response);
+            let res = response;
+            this.fillTable(res);
+          }
+        );
+        return;
+      }
+
+      if(this.selectedOrderBy == 'level'){
+        this.logService.findLogByEnvironmentAndOrderByLevel(this.selectedEnvironment, this.selectedOrderBy)
+        .subscribe(
+          response=>{
+            console.log(response);
+            let res = response;
+            this.fillTable(res);
+          }
+        );
+        return;
+      }
+    }
+
+    this.logService.findLogByEnvironment(this.selectedEnvironment)
+    .subscribe(
+      response=>{
+        console.log(response);
+        let res = response;
+        this.fillTable(res);
+      }
+    );
+    return;
   }
 
   fillTable(res){

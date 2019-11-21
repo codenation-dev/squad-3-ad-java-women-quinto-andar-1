@@ -4,10 +4,10 @@
 
   <!-- Dropdowns de select-->
   <div class="row">
-    <div class="col-sm-12 col-md-3">
+    <div class="col-sm-12 col-md-2">
       <mat-form-field>
         <mat-label>Selecione uma opção</mat-label>
-        <mat-select [(value)]="selectedAmb">
+        <mat-select [(value)]="selectedEnvironment">
           <mat-option value="producao">Produção</mat-option>
           <mat-option value="homologacao">Homologação</mat-option>
           <mat-option value="dev">Dev</mat-option>
@@ -15,21 +15,21 @@
       </mat-form-field>
     </div>
 
-    <div class="col-sm-12 col-md-3">
+    <div class="col-sm-12 col-md-2">
       <mat-form-field>
         <mat-label>Ordenar por</mat-label>
-        <mat-select [(value)]="selectedOrdem">
+        <mat-select [(value)]="selectedOrderBy">
           <mat-option>None</mat-option>
           <mat-option value="level">Level</mat-option>
-          <mat-option value="frequencia">Frequência</mat-option>
+          <mat-option value="evento">Evento</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
-    <div class="col-sm-12 col-md-3">
+    <div class="col-sm-12 col-md-2">
       <mat-form-field>
         <mat-label>Buscar por</mat-label>
-        <mat-select [(value)]="selectedBusca">
+        <mat-select [(value)]="selectedSearchBy">
           <mat-option>None</mat-option>
           <mat-option value="level">Level</mat-option>
           <mat-option value="descricao">Descrição</mat-option>
@@ -38,6 +38,12 @@
       </mat-form-field>
     </div>
 
+    <div class="col-md">
+      <button mat-button style="color: white; background-color: #5990f7;" (click)="ngOnInit()">
+        <mat-icon>search</mat-icon>
+      </button> 
+    </div>
+    
     <div class="col-sm-12 col-md-3">
       <!-- Filter -->
       <mat-form-field>
