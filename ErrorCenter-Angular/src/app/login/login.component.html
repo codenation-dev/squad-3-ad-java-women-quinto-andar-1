@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div class="container mt-5 login-box">
+
+  <mat-card class="mat-elevation-z8">
+    <div class="row box-cadastro">
+      <div class="col-12">
+        <h3 class="text-center">Login</h3>
+        <span *ngIf="isFailedLogin" style="color: red">Usuário ou senha incorretos.</span>
+        <form class="mt-5" [formGroup]="formLogin">
+
+          <div class="form-group">
+            <input type="text" class="form-control login" placeholder="Login ou Email" formControlName="login">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control login" placeholder="Senha" formControlName="password">
+          </div>
+          <button type="submit" class="btn btn-primary acessar-conta" style="float: right;"
+            (click)="login()">Login</button>
+          <button type="submit" class="btn btn-link esqueci-senha" style="float: right;" (click)="rePassword()">Esqueci
+            a senha</button>
+        </form>
+      </div>
+    </div>
+  </mat-card>
+</div>

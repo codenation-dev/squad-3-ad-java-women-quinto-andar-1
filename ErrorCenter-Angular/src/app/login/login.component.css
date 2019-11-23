@@ -1,0 +1,37 @@
+.acessar-conta {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #4a5cff;
+    border: 0;
+    color: rgb(255, 255, 255);
+}
+.esqueci-senha {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.login {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-radius: 0;
+    outline: none;
+    height: 50px;
+}
+@media screen and (min-width: 600px) {
+    .wrapper-header {
+        height: 10px;
+    }
+    .menu-header li {
+        list-style: none;
+        display: inline;
+        position: relative;
+        margin: 10px;
+        top: 30px;
+        font-size: 18px;
+    }
+}
+.form-row .align-items-center {
+    height: 380px;
+}

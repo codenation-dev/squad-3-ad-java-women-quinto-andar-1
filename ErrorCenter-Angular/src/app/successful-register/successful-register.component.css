@@ -1,0 +1,21 @@
+.wrapper-content {
+    width: 100vw;
+    height: 70vh;
+    z-index: -9999;
+    top: -60px;
+    }
+    .wrapper-content
+    h1,
+    p {
+    text-align: center;
+    margin-top: 100px;
+    }
+    .wrapper-content button {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 24px;
+    }
+    .wrapper-content p {
+    font-size: 18px;
+    }

@@ -1,0 +1,57 @@
+<!-- 
+<div class="row wrapper-header" style="display: flex;
+align-items: center ">
+  <div class="col-sm-12 col-md-1">
+    <img class="img-responsive" src="assets/images/5andar.png" style="height: 50px;display: block;
+      margin-left: auto;
+      margin-right: auto">
+  </div>
+  <div class="col-sm-12 col-md">
+
+    <p *ngIf="loginService.isLoggedIn()" style="margin-top: auto;
+    margin-bottom: auto">Bem Vindo(a) {{userName}}. Seu token é: {{userToken}}</p>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <button *ngIf="loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff" (click)="logout()">
+      Sair
+    </button>
+    <button *ngIf="!loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff"
+      routerLink="/signup">
+      Cadastrar
+    </button>
+    <button *ngIf="!loginService.isLoggedIn()" class="btn btn-link" style="float: right; color: #fff"
+      routerLink="/login">
+      Login
+    </button>
+  </div>
+  <div class="col-sm col-md-1">
+    <mat-icon style="font-size: 30px;">account_circle</mat-icon>
+  </div>
+</div> -->
+
+<div class="topnav" id="myTopnav">
+  <a class="active"><img src="assets/images/5andar.png" style="width: 55px;"></a>
+
+  <a *ngIf="loginService.isLoggedIn()" style="margin-top: auto;
+    margin-bottom: auto">Bem Vindo(a) {{userName}}. Seu token é: {{userToken}}</a>
+
+  <a style="float: right;">
+    <mat-icon>account_circle</mat-icon>
+  </a>
+
+  <a *ngIf="loginService.isLoggedIn()" class="pointer" style="float: right;" (click)="logout()" routerLink>
+    Sair
+  </a>
+
+  <a *ngIf="!loginService.isLoggedIn()" class="pointer" style="float: right;" routerLink="/signup">
+    Cadastrar
+  </a>
+
+  <a *ngIf="!loginService.isLoggedIn()" class="pointer" style="float: right;" routerLink="/login">
+    Login
+  </a>
+
+  <a href="javascript:void(0);" class="icon" (click)="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>

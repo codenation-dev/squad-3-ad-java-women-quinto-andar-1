@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+<div class="container wrapper">
+  <mat-card class="mat-elevation-z8">
+  <div class="row wrapper">
+    <div class="col">
+        <h2>
+            Erro no {{ip}} em {{data}} {{hora}}
+            </h2>
+    </div>
+    
+  </div>
+  <div class="row wrapper">
+    <div class="col-sm-10 col-md-8">
+      <h5>Titulo</h5>
+      {{titulo}}
+    </div>
+    <div class="col-sm-2 col-md-4">
+      <div class="row">
+        <div class="col" [style.color]="getColor(level)">
+            {{level}}
+            <br>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col wrapper">
+          <h5>Eventos</h5>
+          <p>{{eventos}}</p> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row wrapper">
+    <div class="col-sm-10 col-md-8">
+      <h5>Detalhes</h5>
+        {{details}}
+    </div>
+    <div class="col-sm-2 col-md-4">
+      <div class="row">
+        <div class="col">
+            <h5>Coletado por</h5>
+              {{token}}
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</mat-card>
+<div>
+  <button mat-stroked-button color="primary" routerLink="/home" style="margin-top: 10px; float: right;">Voltar</button>
+</div>
+
+</div>
