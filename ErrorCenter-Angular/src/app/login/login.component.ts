@@ -87,6 +87,9 @@ export class LoginComponent implements OnInit {
     //}
   }
 
+  rePassword(){
+    alert("Entrar em contato com o administrador do sistema");
+  }
   openDialog() {
     const dialogRef = this.dialog.open(ModalNotRegisteredComponent, {
       height: '350px'
